@@ -15,19 +15,42 @@ public class GroupCreationTest {
     wd = new FirefoxDriver();
     wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
-    wd.findElement(By.name("user")).click();
-    wd.findElement(By.name("user")).clear();
-    wd.findElement(By.name("user")).sendKeys("admin");
-    wd.findElement(By.name("pass")).click();
-    wd.findElement(By.name("pass")).clear();
-    wd.findElement(By.name("pass")).sendKeys("secret");
-    wd.findElement(By.xpath("//input[@value='Login']")).click();
+    login("user", "admin", "pass", "secret", By.xpath("//input[@value='Login']"));
+  }
+
+  private void login(String user, String admin, String pass, String secret, By xpath) {
+    wd.findElement(By.name(user)).click();
+    wd.findElement(By.name(user)).clear();
+    wd.findElement(By.name(user)).sendKeys(admin);
+    wd.findElement(By.name(pass)).click();
+    wd.findElement(By.name(pass)).clear();
+    wd.findElement(By.name(pass)).sendKeys(secret);
+    wd.findElement(xpath).click();
   }
 
   @Test
   public void testGroupCreation() throws Exception {
+    gotoGroupPage();
+    initGroupCreation();
+    fillGroupForm();
+    submitGroupCreation();
+    returnToGroupPage();
+    logout();
+  }
+
+  private void logout() {
+    wd.findElement(By.linkText("Logout")).click();
+  }
+
+  private void returnToGroupPage() {
     wd.findElement(By.linkText("groups")).click();
-    wd.findElement(By.name("new")).click();
+  }
+
+  private void submitGroupCreation() {
+    wd.findElement(By.name("submit")).click();
+  }
+
+  private void fillGroupForm() {
     wd.findElement(By.name("group_name")).click();
     wd.findElement(By.name("group_name")).clear();
     wd.findElement(By.name("group_name")).sendKeys("test1");
@@ -37,9 +60,14 @@ public class GroupCreationTest {
     wd.findElement(By.name("group_footer")).click();
     wd.findElement(By.name("group_footer")).clear();
     wd.findElement(By.name("group_footer")).sendKeys("test3");
-    wd.findElement(By.name("submit")).click();
+  }
+
+  private void initGroupCreation() {
+    wd.findElement(By.name("new")).click();
+  }
+
+  private void gotoGroupPage() {
     wd.findElement(By.linkText("groups")).click();
-    wd.findElement(By.linkText("Logout")).click();
   }
 
   @AfterMethod(alwaysRun = true)
