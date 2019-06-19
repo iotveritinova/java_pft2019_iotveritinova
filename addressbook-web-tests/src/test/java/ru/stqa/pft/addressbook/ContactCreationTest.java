@@ -57,33 +57,33 @@ public class ContactCreationTest {
     fillContactAddress("Sadovaya st.,2,204b");
     fillContactPhones("999-999", "8-999-111-22-33", "123-123", "123-123-123");
     fillContactEmails("email@mail.ru", "email2@mail.ru", "email3@mail.ru", "petrov.ru");
-    fillContactBday();
-    fillContactAday();
+    fillContactBday("7", "July", "1997");
+    fillContactAday("1", "January", "1111");
     fillContactSecondaryInfo("secondary address", "222-222", "some notes");
   }
 
-  private void fillContactAday() {
+  private void fillContactAday(String day, String month, String year) {
     wd.findElement(By.name("aday")).click();
-    new Select(wd.findElement(By.name("aday"))).selectByVisibleText("1");
+    new Select(wd.findElement(By.name("aday"))).selectByVisibleText(day);
     wd.findElement(By.xpath("(//option[@value='1'])[2]")).click();
     wd.findElement(By.name("amonth")).click();
-    new Select(wd.findElement(By.name("amonth"))).selectByVisibleText("January");
+    new Select(wd.findElement(By.name("amonth"))).selectByVisibleText(month);
     wd.findElement(By.xpath("(//option[@value='January'])[2]")).click();
     wd.findElement(By.name("ayear")).click();
     wd.findElement(By.name("ayear")).clear();
-    wd.findElement(By.name("ayear")).sendKeys("1111");
+    wd.findElement(By.name("ayear")).sendKeys(year);
   }
 
-  private void fillContactBday() {
+  private void fillContactBday(String day, String month, String year) {
     wd.findElement(By.name("bday")).click();
-    new Select(wd.findElement(By.name("bday"))).selectByVisibleText("7");
+    new Select(wd.findElement(By.name("bday"))).selectByVisibleText(day);
     wd.findElement(By.xpath("//option[@value='7']")).click();
     wd.findElement(By.name("bmonth")).click();
-    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText("July");
+    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(month);
     wd.findElement(By.xpath("//option[@value='July']")).click();
     wd.findElement(By.name("byear")).click();
     wd.findElement(By.name("byear")).clear();
-    wd.findElement(By.name("byear")).sendKeys("1997");
+    wd.findElement(By.name("byear")).sendKeys(year);
   }
 
   private void fillContactSecondaryInfo(String secAddress, String secPhone, String notes) {
