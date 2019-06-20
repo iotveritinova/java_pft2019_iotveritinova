@@ -7,6 +7,7 @@ import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
+import ru.stqa.pft.addressbook.*;
 
 public class ContactCreationTest {
   private WebDriver wd;
@@ -52,115 +53,110 @@ public class ContactCreationTest {
   }
 
   private void fillContactInfo() {
-    fillContactNames("Petr", "Petrovich", "Petrov", "Petya");
-    fillContactJob("qa engeneer", "Roga&Kopyta");
-    fillContactAddress("Sadovaya st.,2,204b");
-    fillContactPhones("999-999", "8-999-111-22-33", "123-123", "123-123-123");
-    fillContactEmails("email@mail.ru", "email2@mail.ru", "email3@mail.ru", "petrov.ru");
-    fillContactBday("7", "July", "1997");
-    fillContactAday("1", "January", "1111");
-    fillContactSecondaryInfo("secondary address", "222-222", "some notes");
+    fillContactNames(new Names("Petr", "Petrovich", "Petrov", "Petya"));
+    fillContactJob(new JobData("qa engeneer", "Roga&Kopyta"));
+    fillContactAddress(new AddressData("Sadovaya st.,2,204b"));
+    fillContactPhones(new Phones("999-999", "8-999-111-22-33", "123-123", "123-123-123"));
+    fillContactEmails(new Emails("email@mail.ru", "email2@mail.ru", "email3@mail.ru", "petrov.ru"));
+    fillContactBday(new BdayData("7", "July", "1997"));
+    fillContactAday(new AdayData("1", "January", "1111"));
+    fillContactSecondaryInfo(new SecondaryData("secondary address", "222-222", "some notes"));
   }
 
-  private void fillContactAday(String day, String month, String year) {
+  private void fillContactAday(AdayData adayData) {
     wd.findElement(By.name("aday")).click();
-    new Select(wd.findElement(By.name("aday"))).selectByVisibleText(day);
+    new Select(wd.findElement(By.name("aday"))).selectByVisibleText(adayData.getDay());
     wd.findElement(By.xpath("(//option[@value='1'])[2]")).click();
     wd.findElement(By.name("amonth")).click();
-    new Select(wd.findElement(By.name("amonth"))).selectByVisibleText(month);
+    new Select(wd.findElement(By.name("amonth"))).selectByVisibleText(adayData.getMonth());
     wd.findElement(By.xpath("(//option[@value='January'])[2]")).click();
     wd.findElement(By.name("ayear")).click();
     wd.findElement(By.name("ayear")).clear();
-    wd.findElement(By.name("ayear")).sendKeys(year);
+    wd.findElement(By.name("ayear")).sendKeys(adayData.getYear());
   }
 
-  private void fillContactBday(String day, String month, String year) {
+  private void fillContactBday(BdayData bdayData) {
     wd.findElement(By.name("bday")).click();
-    new Select(wd.findElement(By.name("bday"))).selectByVisibleText(day);
+    new Select(wd.findElement(By.name("bday"))).selectByVisibleText(bdayData.getDay());
     wd.findElement(By.xpath("//option[@value='7']")).click();
     wd.findElement(By.name("bmonth")).click();
-    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(month);
+    new Select(wd.findElement(By.name("bmonth"))).selectByVisibleText(bdayData.getMonth());
     wd.findElement(By.xpath("//option[@value='July']")).click();
     wd.findElement(By.name("byear")).click();
     wd.findElement(By.name("byear")).clear();
-    wd.findElement(By.name("byear")).sendKeys(year);
+    wd.findElement(By.name("byear")).sendKeys(bdayData.getYear());
   }
 
-  private void fillContactSecondaryInfo(String secAddress, String secPhone, String notes) {
-    wd.findElement(By.name("address2")).click();
+  private void fillContactSecondaryInfo(SecondaryData secondaryData) {
     wd.findElement(By.name("address2")).click();
     wd.findElement(By.name("address2")).clear();
-    wd.findElement(By.name("address2")).sendKeys(secAddress);
+    wd.findElement(By.name("address2")).sendKeys(secondaryData.getSecAddress());
     wd.findElement(By.name("phone2")).click();
     wd.findElement(By.name("phone2")).clear();
-    wd.findElement(By.name("phone2")).sendKeys(secPhone);
+    wd.findElement(By.name("phone2")).sendKeys(secondaryData.getSecPhone());
     wd.findElement(By.name("notes")).click();
     wd.findElement(By.name("notes")).clear();
-    wd.findElement(By.name("notes")).sendKeys(notes);
+    wd.findElement(By.name("notes")).sendKeys(secondaryData.getNotes());
   }
 
-  private void fillContactEmails(String email1, String email2, String email3, String homepage) {
-    wd.findElement(By.name("email")).click();
+  private void fillContactEmails(Emails emails) {
     wd.findElement(By.name("email")).click();
     wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(email1);
-    wd.findElement(By.name("email2")).click();
+    wd.findElement(By.name("email")).sendKeys(emails.getEmail1());
     wd.findElement(By.name("email2")).click();
     wd.findElement(By.name("email2")).clear();
-    wd.findElement(By.name("email2")).sendKeys(email2);
-    wd.findElement(By.name("email3")).click();
-    wd.findElement(By.name("email3")).click();
+    wd.findElement(By.name("email2")).sendKeys(emails.getEmail2());
     wd.findElement(By.name("email3")).click();
     wd.findElement(By.name("email3")).clear();
-    wd.findElement(By.name("email3")).sendKeys(email3);
+    wd.findElement(By.name("email3")).sendKeys(emails.getEmail3());
     wd.findElement(By.name("homepage")).click();
     wd.findElement(By.name("homepage")).clear();
-    wd.findElement(By.name("homepage")).sendKeys(homepage);
+    wd.findElement(By.name("homepage")).sendKeys(emails.getHomepage());
   }
 
-  private void fillContactPhones(String homePhone, String mobilePhone, String workPhone, String faxPhone) {
+  private void fillContactPhones(Phones phones) {
     wd.findElement(By.name("home")).click();
     wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys(homePhone);
+    wd.findElement(By.name("home")).sendKeys(phones.getHomePhone());
     wd.findElement(By.name("mobile")).click();
     wd.findElement(By.name("mobile")).clear();
-    wd.findElement(By.name("mobile")).sendKeys(mobilePhone);
+    wd.findElement(By.name("mobile")).sendKeys(phones.getMobilePhone());
     wd.findElement(By.name("work")).click();
     wd.findElement(By.name("work")).clear();
-    wd.findElement(By.name("work")).sendKeys(workPhone);
+    wd.findElement(By.name("work")).sendKeys(phones.getWorkPhone());
     wd.findElement(By.name("fax")).click();
     wd.findElement(By.name("fax")).clear();
-    wd.findElement(By.name("fax")).sendKeys(faxPhone);
+    wd.findElement(By.name("fax")).sendKeys(phones.getFaxPhone());
   }
 
-  private void fillContactAddress(String Address) {
+  private void fillContactAddress(AddressData addressData) {
     wd.findElement(By.name("address")).click();
     wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(Address);
+    wd.findElement(By.name("address")).sendKeys(addressData.getAddress());
   }
 
-  private void fillContactJob(String jobTitle, String jobCompany) {
+  private void fillContactJob(JobData jobData) {
     wd.findElement(By.name("title")).click();
     wd.findElement(By.name("title")).clear();
-    wd.findElement(By.name("title")).sendKeys(jobTitle);
+    wd.findElement(By.name("title")).sendKeys(jobData.getJobTitle());
     wd.findElement(By.name("company")).click();
     wd.findElement(By.name("company")).clear();
-    wd.findElement(By.name("company")).sendKeys(jobCompany);
+    wd.findElement(By.name("company")).sendKeys(jobData.getJobCompany());
   }
 
-  private void fillContactNames(String firstName, String middleName, String lastName, String nickname) {
+  private void fillContactNames(Names names) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(firstName);
+    wd.findElement(By.name("firstname")).sendKeys(names.getFirstName());
     wd.findElement(By.name("middlename")).click();
     wd.findElement(By.name("middlename")).clear();
-    wd.findElement(By.name("middlename")).sendKeys(middleName);
+    wd.findElement(By.name("middlename")).sendKeys(names.getMiddleName());
     wd.findElement(By.name("lastname")).click();
     wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(lastName);
+    wd.findElement(By.name("lastname")).sendKeys(names.getLastName());
     wd.findElement(By.name("nickname")).click();
     wd.findElement(By.name("nickname")).clear();
-    wd.findElement(By.name("nickname")).sendKeys(nickname);
+    wd.findElement(By.name("nickname")).sendKeys(names.getNickname());
   }
 
   private void addNewContact() {
