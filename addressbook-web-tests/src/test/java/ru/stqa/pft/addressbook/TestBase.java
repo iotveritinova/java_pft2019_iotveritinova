@@ -11,7 +11,7 @@ import org.testng.annotations.BeforeMethod;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
-  private WebDriver wd;
+  protected WebDriver wd;
 
   @BeforeMethod(alwaysRun = true)
   public void setUp() throws Exception {
@@ -85,5 +85,13 @@ public class TestBase {
     } catch (NoAlertPresentException e) {
       return false;
     }
+  }
+
+  protected void deleteSelectegGroups() {
+    wd.findElement(By.xpath("(//input[@name='delete'])[2]")).click();
+  }
+
+  protected void selectGroup() {
+    wd.findElement(By.name("selected[]")).click();
   }
 }
