@@ -34,7 +34,7 @@ public class ContactCreationTest {
   public void testContactCreation() throws Exception {
 
     addNewContact();
-    fillContactInfo();
+    fillContactInfo(new Names("Petr", "Petrovich", "Petrov", "Petya"), new JobData("qa engeneer", "Roga&Kopyta"), new AddressData("Sadovaya st.,2,204b"), new Phones("999-999", "8-999-111-22-33", "123-123", "123-123-123"), new BdayData("7", "July", "1997"), new Emails("email@mail.ru", "email2@mail.ru", "email3@mail.ru", "petrov.ru"), new AdayData("1", "January", "1111"), new SecondaryData("secondary address", "222-222", "some notes"));
     submitContactCreation();
     returnToHomePage();
     logout();
@@ -52,15 +52,15 @@ public class ContactCreationTest {
     wd.findElement(By.xpath("(//input[@name='submit'])")).click();
   }
 
-  private void fillContactInfo() {
-    fillContactNames(new Names("Petr", "Petrovich", "Petrov", "Petya"));
-    fillContactJob(new JobData("qa engeneer", "Roga&Kopyta"));
-    fillContactAddress(new AddressData("Sadovaya st.,2,204b"));
-    fillContactPhones(new Phones("999-999", "8-999-111-22-33", "123-123", "123-123-123"));
-    fillContactEmails(new Emails("email@mail.ru", "email2@mail.ru", "email3@mail.ru", "petrov.ru"));
-    fillContactBday(new BdayData("7", "July", "1997"));
-    fillContactAday(new AdayData("1", "January", "1111"));
-    fillContactSecondaryInfo(new SecondaryData("secondary address", "222-222", "some notes"));
+  private void fillContactInfo(Names names, JobData jobData, AddressData addressData, Phones phones, BdayData Bday, Emails emails, AdayData Aday, SecondaryData secondaryData) {
+    fillContactNames(names);
+    fillContactJob(jobData);
+    fillContactAddress(addressData);
+    fillContactPhones(phones);
+    fillContactEmails(emails);
+    fillContactBday(Bday);
+    fillContactAday(Aday);
+    fillContactSecondaryInfo(secondaryData);
   }
 
   private void fillContactAday(AdayData adayData) {
