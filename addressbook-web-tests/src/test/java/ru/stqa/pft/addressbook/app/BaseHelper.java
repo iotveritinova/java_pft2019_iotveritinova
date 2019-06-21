@@ -20,7 +20,8 @@ public class BaseHelper {
 
   protected void click(By locator) {
     wd.findElement(locator).click();
-  } public boolean isElementPresent(By by) {
+  }
+  public boolean isElementPresent(By by) {
     try {
       wd.findElement(by);
       return true;
