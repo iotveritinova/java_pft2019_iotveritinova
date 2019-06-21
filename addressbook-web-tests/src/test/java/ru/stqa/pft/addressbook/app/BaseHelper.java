@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class BaseHelper {
   protected WebDriver wd;
@@ -20,6 +21,12 @@ public class BaseHelper {
 
   protected void click(By locator) {
     wd.findElement(locator).click();
+  }
+
+  protected void dropdownListChoice(By locator, By listItem, String text) {
+    wd.findElement(locator).click();
+    new Select(wd.findElement(locator)).selectByVisibleText(text);
+    wd.findElement(listItem).click();
   }
   public boolean isElementPresent(By by) {
     try {
