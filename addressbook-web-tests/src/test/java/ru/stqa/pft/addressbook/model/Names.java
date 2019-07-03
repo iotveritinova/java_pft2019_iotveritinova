@@ -4,13 +4,11 @@ public class Names {
   private final String firstName;
   private final String middleName;
   private final String lastName;
-  private final String nickname;
 
-  public Names(String firstName, String middleName, String lastName, String nickname) {
+  public Names(String firstName, String middleName, String lastName) {
     this.firstName = firstName;
     this.middleName = middleName;
     this.lastName = lastName;
-    this.nickname = nickname;
   }
 
   public String getFirstName() {
@@ -25,7 +23,4 @@ public class Names {
     return lastName;
   }
 
-  public String getNickname() {
-    return nickname;
-  }
 }
