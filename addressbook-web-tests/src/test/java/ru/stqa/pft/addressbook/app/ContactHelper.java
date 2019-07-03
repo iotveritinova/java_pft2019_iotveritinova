@@ -20,34 +20,17 @@ public class ContactHelper extends BaseHelper {
     click(By.xpath("(//input[@name='submit'])"));
   }
 
-  public void fillContactInfo(Names names,  AddressData addressData, Phones phones,  Emails emails) {
-    fillContactNames(names);
-
-    fillContactAddress(addressData);
-    fillContactPhones(phones);
-    fillContactEmails(emails);
-  }
 
 
-  public void fillContactEmails(Emails newContact) {
-    type(By.name("email"), newContact.getEmail1());
-  }
-
-  public void fillContactPhones(Phones newContact) {
-    type(By.name("home"), newContact.getHomePhone());
-    type(By.name("mobile"), newContact.getMobilePhone());
-  }
-
-  public void fillContactAddress(AddressData newContact) {
-    type(By.name("address"), newContact.getAddress());
-  }
-
-
-
-  public void fillContactNames(Names newContact) {
+  public void fillContactData(ContactData newContact) {
     type(By.name("firstname"), newContact.getFirstName());
     type(By.name("middlename"), newContact.getMiddleName());
     type(By.name("lastname"), newContact.getLastName());
+    type(By.name("address"), newContact.getAddress());
+    type(By.name("home"), newContact.getHomePhone());
+    type(By.name("mobile"), newContact.getMobilePhone());
+    type(By.name("email"), newContact.getEmail1());
+
   }
 
   public void addNewContact() {
