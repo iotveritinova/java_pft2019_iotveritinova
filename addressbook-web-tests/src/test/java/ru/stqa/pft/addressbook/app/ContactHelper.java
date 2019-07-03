@@ -7,6 +7,7 @@ import ru.stqa.pft.addressbook.model.*;
 public class ContactHelper extends BaseHelper {
 
 
+
   public ContactHelper(WebDriver wd) {
     super(wd);
   }
@@ -19,7 +20,6 @@ public class ContactHelper extends BaseHelper {
   public void submitContactCreation() {
     click(By.xpath("(//input[@name='submit'])"));
   }
-
 
 
   public void fillContactData(ContactData newContact) {
@@ -35,5 +35,13 @@ public class ContactHelper extends BaseHelper {
 
   public void addNewContact() {
     click(By.linkText("add new"));
+  }
+
+  public void deleteSelectedContacts() {
+    click(By.xpath("//input[@value='Delete']"));
+  }
+
+  public void selectContact() {
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
   }
 }

@@ -1,67 +1,33 @@
-package com.example.tests;
+package ru.stqa.pft.addressbook.tests;
 
-import java.util.regex.Pattern;
-import java.util.concurrent.TimeUnit;
-import org.testng.annotations.*;
-import static org.testng.Assert.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
 
-public class ContactDeletionTest {
-  private WebDriver driver;
-  private String baseUrl;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.Test;
+
+public class ContactDeletionTest extends TestBase {
+
+  private WebDriver wd;
   private boolean acceptNextAlert = true;
-  private StringBuffer verificationErrors = new StringBuffer();
-
-  @BeforeClass(alwaysRun = true)
-  public void setUp() throws Exception {
-    driver = new FirefoxDriver();
-    baseUrl = "https://www.katalon.com/";
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-  }
 
   @Test
   public void testContactDeletion() throws Exception {
-    driver.get("http://localhost/addressbook/");
-    driver.findElement(By.linkText("home")).click();
-    driver.findElement(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input")).click();
-    acceptNextAlert = true;
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Select all'])[1]/following::input[2]")).click();
-    acceptNextAlert = true;
-    driver.findElement(By.linkText("home")).click();
+    app.getNavigationHelper().gotoContactPage();
+    app.getContactHelper().selectContact();
+
+    //acceptNextAlert = true;
+    app.getContactHelper().deleteSelectedContacts();    app.getContactHelper().selectContact();
+    acceptAlert();
+    app.getContactHelper().returnToHomePage();
   }
 
-  @AfterClass(alwaysRun = true)
-  public void tearDown() throws Exception {
-    driver.quit();
-    String verificationErrorString = verificationErrors.toString();
-    if (!"".equals(verificationErrorString)) {
-      fail(verificationErrorString);
-    }
-  }
-
-  private boolean isElementPresent(By by) {
+ // private void acceptAlert() {
+   // Alert alert = wd.switchTo().alert();
+    //alert.accept();
+  //}
+  private String acceptAlert() {
     try {
-      driver.findElement(by);
-      return true;
-    } catch (NoSuchElementException e) {
-      return false;
-    }
-  }
-
-  private boolean isAlertPresent() {
-    try {
-      driver.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
-  }
-
-  private String closeAlertAndGetItsText() {
-    try {
-      Alert alert = driver.switchTo().alert();
+      Alert alert = wd.switchTo().alert();
       String alertText = alert.getText();
       if (acceptNextAlert) {
         alert.accept();
@@ -73,4 +39,7 @@ public class ContactDeletionTest {
       acceptNextAlert = true;
     }
   }
+
 }
+
+
