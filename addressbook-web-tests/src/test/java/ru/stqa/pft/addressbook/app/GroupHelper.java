@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-public class GroupHelper extends BaseHelper{
+public class GroupHelper extends BaseHelper {
 
   public GroupHelper(WebDriver wd) {
     super(wd);
@@ -37,9 +37,22 @@ public class GroupHelper extends BaseHelper{
     click(By.name("selected[]"));
   }
 
-  public void submitGroupUpdate() {click(By.name("update"));
+  public void submitGroupUpdate() {
+    click(By.name("update"));
   }
 
-  public void initGroupUpdate() {click(By.xpath("(//input[@name='edit'])[2]"));
+  public void initGroupUpdate() {
+    click(By.xpath("(//input[@name='edit'])[2]"));
+  }
+
+  public void createGroup(GroupData groupData) {
+    initGroupCreation();
+    fillGroupForm(groupData);
+    submitGroupCreation();
+    returnToGroupPage();
+  }
+
+  public boolean isThereAGroup() {
+   return isElementPresent(By.name("selected[]"));
   }
 }
