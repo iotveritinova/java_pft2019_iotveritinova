@@ -11,6 +11,7 @@ public class ApplicationManager {
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
+  private AlertHelper alertHelper;
 
   public void init() {
     wd = new FirefoxDriver();
@@ -20,6 +21,7 @@ public class ApplicationManager {
     navigationHelper = new NavigationHelper(wd);
     contactHelper = new ContactHelper(wd);
     sessionHelper = new SessionHelper(wd);
+    alertHelper = new AlertHelper(wd);
     sessionHelper.login("admin", "secret");
   }
 
@@ -40,5 +42,9 @@ public class ApplicationManager {
 
   public ContactHelper getContactHelper() {
     return contactHelper;
+  }
+
+  public AlertHelper getAlertHelper() {
+    return alertHelper;
   }
 }

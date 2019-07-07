@@ -9,10 +9,8 @@ public class ContactDeletionTest extends TestBase {
     app.getNavigationHelper().gotoContactPage();
     app.getContactHelper().selectContact();
     app.getContactHelper().deleteSelectedContacts();
-    app.getNavigationHelper().isAlertPresent();
-    app.getNavigationHelper().acceptAlert();
-
-
+    app.getAlertHelper().isAlertPresent();
+    app.getAlertHelper().acceptAlert();
     app.getContactHelper().returnToHomePage();
   }
 }
