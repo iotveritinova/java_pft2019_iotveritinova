@@ -48,7 +48,7 @@ public class ContactHelper extends BaseHelper {
     click(By.cssSelector("img[alt=\"Edit\"]"));
   }
 
-  public void changeContactFieldValue(ContactData updatedContact) {
+  public void changeContactData(ContactData updatedContact) {
     type(By.name("firstname"), updatedContact.getFirstName());
     type(By.name("middlename"), updatedContact.getMiddleName());
     type(By.name("lastname"), updatedContact.getLastName());
@@ -59,6 +59,12 @@ public class ContactHelper extends BaseHelper {
 
   }
 
-  public void updateContact() {click(By.name("update"));
+  public void changeContactDataFieldValue(String fieldName, String fieldValue) {
+    type(By.name(fieldName), fieldValue);
+
+  }
+
+  public void updateContact() {
+    click(By.name("update"));
   }
 }
