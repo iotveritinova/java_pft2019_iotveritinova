@@ -11,7 +11,7 @@ public class ContactModificationTest extends TestBase {
     app.getContactHelper().selectContact();
     app.getContactHelper().editSelectedContacts();
     app.getContactHelper().changeContactData(new ContactData("changedName","changedPatronim","changedSurname","new address","888-000-000","777-77-22-22","newEmail@mail.ru"));
-    app.getContactHelper().updateContact();
+    app.getContactHelper().submitUpdateContact();
     app.getContactHelper().returnToHomePage();
   }
   @Test
@@ -22,7 +22,7 @@ public class ContactModificationTest extends TestBase {
     app.getContactHelper().changeContactDataFieldValue("address","new address for housewarming party!!!!");
     app.getContactHelper().changeContactDataFieldValue("lastname","changedLastName");
     app.getContactHelper().changeContactDataFieldValue("mobile","000-000-000");
-    app.getContactHelper().updateContact();
+    app.getContactHelper().submitUpdateContact();
     app.getContactHelper().returnToHomePage();
   }
 }

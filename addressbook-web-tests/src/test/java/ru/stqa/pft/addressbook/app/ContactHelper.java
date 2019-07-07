@@ -64,7 +64,7 @@ public class ContactHelper extends BaseHelper {
 
   }
 
-  public void updateContact() {
+  public void submitUpdateContact() {
     click(By.name("update"));
   }
 }
