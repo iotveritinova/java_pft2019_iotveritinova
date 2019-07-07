@@ -57,4 +57,15 @@ public class ContactHelper extends BaseHelper {
   public void submitUpdateContact() {
     click(By.name("update"));
   }
+
+  public boolean isThereAContract() {
+    return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
+  }
+
+  public void createContract(ContactData contactData, boolean b) {
+    addNewContact();
+    fillContactData(contactData, b);
+    submitContactCreation();
+    returnToHomePage();
+  }
 }
