@@ -7,7 +7,6 @@ import ru.stqa.pft.addressbook.model.*;
 public class ContactHelper extends BaseHelper {
 
 
-
   public ContactHelper(WebDriver wd) {
     super(wd);
   }
@@ -43,5 +42,23 @@ public class ContactHelper extends BaseHelper {
 
   public void selectContact() {
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
+  }
+
+  public void editSelectedContacts() {
+    click(By.cssSelector("img[alt=\"Edit\"]"));
+  }
+
+  public void changeContactFieldValue(ContactData updatedContact) {
+    type(By.name("firstname"), updatedContact.getFirstName());
+    type(By.name("middlename"), updatedContact.getMiddleName());
+    type(By.name("lastname"), updatedContact.getLastName());
+    type(By.name("address"), updatedContact.getAddress());
+    type(By.name("home"), updatedContact.getHomePhone());
+    type(By.name("mobile"), updatedContact.getMobilePhone());
+    type(By.name("email"), updatedContact.getEmail1());
+
+  }
+
+  public void updateContact() {click(By.name("update"));
   }
 }
