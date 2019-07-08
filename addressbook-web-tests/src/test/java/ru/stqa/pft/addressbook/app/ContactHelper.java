@@ -50,9 +50,8 @@ public class ContactHelper extends BaseHelper {
     click(By.xpath("//input[@value='Delete']"));
   }
 
-  public void selectContact() {
-
-    click(By.xpath("//table[@id='maintable']/tbody/tr[@name='entry']/td/input"));
+  public void selectContact(int index) {
+    wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[@name='entry']/td/input")).get(index).click();
   }
 
   public void editSelectedContacts() {
@@ -76,11 +75,11 @@ public class ContactHelper extends BaseHelper {
 
   public List<ContactData> getContactList() {
     List<ContactData> contacts = new ArrayList<ContactData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("tr.entry"));
+    List<WebElement> elements = wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[@name='entry']/td/input"));
     for (WebElement element : elements) {
       String firstName = element.getText();
       String lastName = element.getText();
-     // int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      // int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       ContactData contact = new ContactData(firstName, null, lastName, null, null, null, null, null);
       contacts.add(contact);
     }
