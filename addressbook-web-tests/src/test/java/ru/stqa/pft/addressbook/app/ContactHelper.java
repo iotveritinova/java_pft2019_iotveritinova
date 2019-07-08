@@ -2,9 +2,13 @@ package ru.stqa.pft.addressbook.app;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends BaseHelper {
 
@@ -47,7 +51,8 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void selectContact() {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
+
+    click(By.xpath("//table[@id='maintable']/tbody/tr[@name='entry']/td/input"));
   }
 
   public void editSelectedContacts() {
@@ -67,5 +72,18 @@ public class ContactHelper extends BaseHelper {
     fillContactData(contactData, b);
     submitContactCreation();
     returnToHomePage();
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("tr.entry"));
+    for (WebElement element : elements) {
+      String firstName = element.getText();
+      String lastName = element.getText();
+     // int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      ContactData contact = new ContactData(firstName, null, lastName, null, null, null, null, null);
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }
