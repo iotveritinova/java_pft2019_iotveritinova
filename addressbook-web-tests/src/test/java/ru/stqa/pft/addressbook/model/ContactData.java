@@ -91,4 +91,8 @@ public class ContactData {
   public String getGroup() {
     return group;
   }
+
+  public void setId(int id) {
+    this.id = id;
+  }
 }
