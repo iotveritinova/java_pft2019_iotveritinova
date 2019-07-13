@@ -42,7 +42,7 @@ public class ContactHelper extends BaseHelper {
     }
   }
 
-  public void addNewContact() {
+  public void addNew() {
     click(By.linkText("add new"));
   }
 
@@ -66,14 +66,30 @@ public class ContactHelper extends BaseHelper {
     return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
   }
 
-  public void createContract(ContactData contactData, boolean b) {
-    addNewContact();
+  public void create(ContactData contactData, boolean b) {
+    addNew();
     fillContactData(contactData, b);
     submitContactCreation();
     returnToHomePage();
   }
 
-  public List<ContactData> getContactList() {
+  public void delete(List<ContactData> before) {
+    selectContact(before.size() - 1);
+    deleteSelectedContacts();
+    isAlertPresent();
+    acceptAlert();
+    returnToHomePage();
+  }
+
+  public void modify(int index, ContactData contact) {
+    selectContact(index);
+    editSelectedContacts();
+    fillContactData(contact, false);
+    submitUpdateContact();
+    returnToHomePage();
+  }
+
+  public List<ContactData> list() {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
     //List<WebElement> elements = wd.findElements(By.xpath("//table[@id='maintable']/tbody/tr[@name='entry']"));E:nth-of-type(2)

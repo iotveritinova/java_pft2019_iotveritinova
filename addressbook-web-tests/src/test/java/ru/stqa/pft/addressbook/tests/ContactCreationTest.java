@@ -13,12 +13,12 @@ public class ContactCreationTest extends TestBase {
 
   @Test
   public void testContactCreation() throws Exception {
-    app.goTo().gotoContactPage();
-    List<ContactData> before = app.getContactHelper().getContactList();
-    app.getContactHelper().addNewContact();
+    app.goTo().contactPage();
+    List<ContactData> before = app.contact().list();
+    app.contact().addNew();
     ContactData contact = new ContactData("Petr", "Petrovich", "Petrov", "Sadovaya st.,2,204b", "999-999", "8-999-111-22-33", "email@mail.ru", "[none]");
-    app.getContactHelper().createContract(contact,true);
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().create(contact,true);
+    List<ContactData> after = app.contact().list();
     //проверка количества записей
     Assert.assertEquals(after.size(), before.size() + 1);
     //проверка списков с записями

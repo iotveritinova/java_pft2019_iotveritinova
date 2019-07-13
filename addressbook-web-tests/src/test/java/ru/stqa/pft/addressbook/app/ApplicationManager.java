@@ -12,7 +12,6 @@ public class ApplicationManager {
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
-  private AlertHelper alertHelper;
   private String browser;
 
   public ApplicationManager(String browser) {
@@ -33,7 +32,6 @@ public class ApplicationManager {
     navigationHelper = new NavigationHelper(wd);
     contactHelper = new ContactHelper(wd);
     sessionHelper = new SessionHelper(wd);
-    alertHelper = new AlertHelper(wd);
     sessionHelper.login("admin", "secret");
   }
 
@@ -52,11 +50,8 @@ public class ApplicationManager {
     return navigationHelper;
   }
 
-  public ContactHelper getContactHelper() {
+  public ContactHelper contact() {
     return contactHelper;
   }
 
-  public AlertHelper getAlertHelper() {
-    return alertHelper;
-  }
 }
