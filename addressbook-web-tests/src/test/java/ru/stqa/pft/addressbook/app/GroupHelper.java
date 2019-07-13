@@ -57,7 +57,7 @@ public class GroupHelper extends BaseHelper {
   }
 
   public boolean isThereAGroup() {
-   return isElementPresent(By.name("selected[]"));
+    return isElementPresent(By.name("selected[]"));
   }
 
   public int addGroupCount() {
@@ -65,14 +65,22 @@ public class GroupHelper extends BaseHelper {
   }
 
   public List<GroupData> getGroupList() {
-  List<GroupData> groups=new ArrayList<GroupData>();
-  List<WebElement> elements=wd.findElements(By.cssSelector("span.group"));
-  for (WebElement element:elements){
-    String name=element.getText();
-    int id=Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-    GroupData group=new GroupData(id,name,null,null);
-    groups.add(group);
+    List<GroupData> groups = new ArrayList<GroupData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      GroupData group = new GroupData(id, name, null, null);
+      groups.add(group);
+    }
+    return groups;
   }
-  return groups;
+
+  public void modifyGroup(int index, GroupData group) {
+    selectGroup(index);
+    initGroupUpdate();
+    fillGroupForm(group);
+    submitGroupUpdate();
+    returnToGroupPage();
   }
 }
