@@ -6,8 +6,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
 
 public class ContactModificationTest extends TestBase {
   @BeforeMethod
@@ -20,22 +19,15 @@ public class ContactModificationTest extends TestBase {
 
   @Test
   public void testContactModification() throws Exception {
-
-    List<ContactData> before = app.contact().list();
-    ContactData contact = new ContactData().withId(before.get(before.size() - 1).getId()).withFirstName("changedName").withLastName("changedSurname");
+    Set<ContactData> before = app.contact().all();
+    ContactData modifiedContact = before.iterator().next();
+    ContactData contact = new ContactData().withId(modifiedContact.getId()).withFirstName("changedName").withLastName("changedSurname");
     int index = before.size() - 1;
-    app.contact().modify(index, contact);
-    List<ContactData> after = app.contact().list();
-    //проверка количества записей
+    app.contact().modify(modifiedContact.getId(), contact);
+    Set<ContactData> after = app.contact().all();
     Assert.assertEquals(after.size(), before.size());
-    //проверка списков с записями
-    before.remove(0);
+    before.remove(modifiedContact);
     before.add(contact);
-    //сортировка списка
-    Comparator<? super ContactData> byId = (Comparator<ContactData>) (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
-    before.sort(byId);
-    after.sort(byId);
-    //сравнение списков
     Assert.assertEquals(before, after);
   }
 
