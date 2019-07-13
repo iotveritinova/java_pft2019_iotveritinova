@@ -26,7 +26,7 @@ public class ContactModificationTest extends TestBase {
     //проверка количества записей
     Assert.assertEquals(after.size(), before.size());
     //проверка списков с записями
-    before.remove(before.size() - 1);
+    before.remove(0);
     before.add(contact);
     //сортировка списка
     Comparator<? super ContactData> byId = (Comparator<ContactData>) (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
