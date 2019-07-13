@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,10 +38,6 @@ public class GroupHelper extends BaseHelper {
     click(By.xpath("(//input[@name='delete'])[2]"));
   }
 
-  public void selectGroup(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
-  }
-
   public void submitGroupUpdate() {
     click(By.name("update"));
   }
@@ -58,25 +53,11 @@ public class GroupHelper extends BaseHelper {
     returnToGroupPage();
   }
 
-  public void modify(int index, GroupData group) {
-    selectGroup(index);
-    initGroupUpdate();
-    fillGroupForm(group);
-    submitGroupUpdate();
-    returnToGroupPage();
-  }
-
   public void modify(GroupData group) {
     selectGroupById(group.getId());
     initGroupUpdate();
     fillGroupForm(group);
     submitGroupUpdate();
-    returnToGroupPage();
-  }
-
-  public void delete(int index) {
-    selectGroup(index);
-    deleteSelectedGroups();
     returnToGroupPage();
   }
 
@@ -96,17 +77,6 @@ public class GroupHelper extends BaseHelper {
 
   public int addGroupCount() {
     return wd.findElements(By.name("selected[]")).size();
-  }
-
-  public List<GroupData> list() {
-    List<GroupData> groups = new ArrayList<GroupData>();
-    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
-    for (WebElement element : elements) {
-      String name = element.getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      groups.add(new GroupData().withId(id).withName(name));
-    }
-    return groups;
   }
 
   public Set<GroupData> all() {
