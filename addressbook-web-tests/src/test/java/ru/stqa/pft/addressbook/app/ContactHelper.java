@@ -54,8 +54,8 @@ public class ContactHelper extends BaseHelper {
     wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
   }
 
-  public void editSelectedContacts() {
-    click(By.cssSelector("img[alt=\"Edit\"]"));
+  public void editContactById(int id) {
+    click(By.cssSelector("a[href='edit.php?id=" + id + "'"));
   }
 
   public void submitUpdateContact() {
@@ -81,9 +81,8 @@ public class ContactHelper extends BaseHelper {
     returnToHomePage();
   }
 
-  public void modify(int id, ContactData contact) {
-    selectContactById(id);
-    editSelectedContacts();
+  public void modify(ContactData contact) {
+    editContactById(contact.getId());
     fillContactData(contact, false);
     submitUpdateContact();
     returnToHomePage();
