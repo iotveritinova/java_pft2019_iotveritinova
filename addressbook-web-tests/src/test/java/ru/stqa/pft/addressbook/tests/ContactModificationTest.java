@@ -9,7 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ContactModificationTest extends TestBase {
-  @Test 
+  @Test
   public void testContactModification() throws Exception {
     app.goTo().gotoContactPage();
     if (!app.getContactHelper().isThereAContract()) {
