@@ -66,6 +66,14 @@ public class GroupHelper extends BaseHelper {
     returnToGroupPage();
   }
 
+  public void modify(GroupData group) {
+    selectGroupById(group.getId());
+    initGroupUpdate();
+    fillGroupForm(group);
+    submitGroupUpdate();
+    returnToGroupPage();
+  }
+
   public void delete(int index) {
     selectGroup(index);
     deleteSelectedGroups();
@@ -111,6 +119,4 @@ public class GroupHelper extends BaseHelper {
     }
     return groups;
   }
-
-
 }
