@@ -66,9 +66,9 @@ public class ContactHelper extends BaseHelper {
     return isElementPresent(By.xpath("//table[@id='maintable']/tbody/tr[2]/td/input"));
   }
 
-  public void create(ContactData contactData, boolean b) {
+  public void create(ContactData contactData) {
     addNew();
-    fillContactData(contactData, b);
+    fillContactData(contactData, true);
     submitContactCreation();
     returnToHomePage();
   }
@@ -97,8 +97,7 @@ public class ContactHelper extends BaseHelper {
       String firstName = element.findElement(By.cssSelector("td:nth-of-type(3)")).getText();
       String lastName = element.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData(id, firstName, null, lastName, null, null, null, null, null);
-      contacts.add(contact);
+      contacts.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
     }
     return contacts;
   }
