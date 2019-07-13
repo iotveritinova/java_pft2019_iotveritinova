@@ -9,9 +9,9 @@ import java.util.Comparator;
 import java.util.List;
 
 public class ContactModificationTest extends TestBase {
-  @Test
+  @Test 
   public void testContactModification() throws Exception {
-    app.getNavigationHelper().gotoContactPage();
+    app.goTo().gotoContactPage();
     if (!app.getContactHelper().isThereAContract()) {
       app.getContactHelper().createContract(new ContactData("Petr", "Petrovich", "Petrov", "Sadovaya st.,2,204b", "999-999", "8-999-111-22-33", "email@mail.ru", "[none]"), true);
     }

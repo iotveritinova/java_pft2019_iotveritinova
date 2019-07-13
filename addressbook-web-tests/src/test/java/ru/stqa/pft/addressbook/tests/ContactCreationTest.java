@@ -13,7 +13,7 @@ public class ContactCreationTest extends TestBase {
 
   @Test
   public void testContactCreation() throws Exception {
-    app.getNavigationHelper().gotoContactPage();
+    app.goTo().gotoContactPage();
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().addNewContact();
     ContactData contact = new ContactData("Petr", "Petrovich", "Petrov", "Sadovaya st.,2,204b", "999-999", "8-999-111-22-33", "email@mail.ru", "[none]");
