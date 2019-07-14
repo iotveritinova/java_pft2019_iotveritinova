@@ -51,11 +51,11 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void selectContactById(int id) {
-    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    wd.findElement(By.cssSelector(String.format("input[value='%s']",id))).click();
   }
 
-  public void editContactById(int id) {
-    click(By.cssSelector("a[href='edit.php?id=" + id + "'"));
+  public void initContactModificationById(int id) {
+    click(By.cssSelector(String.format("a[href='edit.php?id=%s'",id)));
   }
 
   public void submitUpdateContact() {
@@ -84,7 +84,7 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void modify(ContactData contact) {
-    editContactById(contact.getId());
+    initContactModificationById(contact.getId());
     fillContactData(contact, false);
     submitUpdateContact();
     contactCache = null;

@@ -70,7 +70,7 @@ public class GroupHelper extends BaseHelper {
   }
 
   private void selectGroupById(int id) {
-    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+    wd.findElement(By.cssSelector((String.format("input[value='%s']",id)))).click();
   }
 
   public boolean isThereAGroup() {
