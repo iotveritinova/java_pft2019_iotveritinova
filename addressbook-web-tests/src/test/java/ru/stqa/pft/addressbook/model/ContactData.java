@@ -13,7 +13,7 @@ public class ContactData {
   private String workPhone;
   private String email1;
   private String group = "[none]";
-
+  private String allPhones;
 
   public int getId() {
     return id;
@@ -53,6 +53,10 @@ public class ContactData {
 
   public String getGroup() {
     return group;
+  }
+
+  public String getAllPhones() {
+    return allPhones;
   }
 
   public ContactData withId(int id) {
@@ -95,6 +99,12 @@ public class ContactData {
     return this;
   }
 
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+
   public ContactData withEmail1(String email1) {
     this.email1 = email1;
     return this;
@@ -122,5 +132,4 @@ public class ContactData {
   public String toString() {
     return "ContactData{" + "id=" + id + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + '}';
   }
-
 }
