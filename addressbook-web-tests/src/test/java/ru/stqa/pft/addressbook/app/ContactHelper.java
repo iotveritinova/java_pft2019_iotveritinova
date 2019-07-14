@@ -107,7 +107,8 @@ public class ContactHelper extends BaseHelper {
       String lastName = cells.get(1).getText();
       String allPhones = cells.get(5).getText();
       String allEmails = cells.get(4).getText();
-      contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).withAllPhones(allPhones).withAllEmails(allEmails));
+      String address = cells.get(3).getText();
+      contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName).withAllPhones(allPhones).withAllEmails(allEmails).withAddress(address));
     }
     return new Contacts(contactCache);
   }
@@ -131,6 +132,6 @@ public class ContactHelper extends BaseHelper {
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName)
             .withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone)
-            .withEmail1(email1).withEmail2(email2).withEmail3(email3);
+            .withEmail1(email1).withEmail2(email2).withEmail3(email3).withAddress(address);
   }
 }
