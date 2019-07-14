@@ -34,6 +34,7 @@ public class ContactHelper extends BaseHelper {
     type(By.name("address"), newContact.getAddress());
     type(By.name("home"), newContact.getHomePhone());
     type(By.name("mobile"), newContact.getMobilePhone());
+    type(By.name("work"), newContact.getWorkPhone());
     type(By.name("email"), newContact.getEmail1());
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(newContact.getGroup());
@@ -51,11 +52,11 @@ public class ContactHelper extends BaseHelper {
   }
 
   public void selectContactById(int id) {
-    wd.findElement(By.cssSelector(String.format("input[value='%s']",id))).click();
+    wd.findElement(By.cssSelector(String.format("input[value='%s']", id))).click();
   }
 
   public void initContactModificationById(int id) {
-    click(By.cssSelector(String.format("a[href='edit.php?id=%s'",id)));
+    click(By.cssSelector(String.format("a[href='edit.php?id=%s'", id)));
   }
 
   public void submitUpdateContact() {
@@ -98,17 +99,26 @@ public class ContactHelper extends BaseHelper {
       return new Contacts(contactCache);
     }
     contactCache = new Contacts();
-    List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
-    for (WebElement element : elements) {
-      String firstName = element.findElement(By.cssSelector("td:nth-of-type(3)")).getText();
-      String lastName = element.findElement(By.cssSelector("td:nth-of-type(2)")).getText();
-      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName));
+    List<WebElement> rows = wd.findElements(By.cssSelector("tr[name=entry]"));
+    for (WebElement row : rows) {
+      List<WebElement> cells = row.findElements(By.tagName("td"));
+      int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
+      String firstName = cells.get(2).getText();
+      String lastName = cells.get(1).getText();
+      String[] phones = cells.get(5).getText().split("\n");
+      contactCache.add(new ContactData().withId(id).withFirstName(firstName).withLastName(lastName)
+              .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
     }
     return new Contacts(contactCache);
   }
 
   public int count() {
     return wd.findElements(By.cssSelector("tr[name=entry]")).size();
+  }
+
+  public ContactData infoFromEditForm(ContactData contact) {
+    initContactModificationById(contact.getId());
+
+    return null;
   }
 }
