@@ -9,11 +9,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class ContactPhonesTest extends TestBase {
   @BeforeMethod
-  //must be edited!!!
   public void ensurePreconditions() {
     app.goTo().contactPage();
     if (app.contact().all().size() == 0) {
-      app.contact().create(new ContactData().withFirstName("Petr").withLastName("Petrov"));
+      app.contact().create(new ContactData().withFirstName("Petr").withLastName("Petrov")
+              .withHomePhone("+7(111)").withMobilePhone("222-222").withWorkPhone("33 333 33"));
     }
   }
 
