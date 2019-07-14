@@ -27,7 +27,7 @@ public class ContactHelper extends BaseHelper {
   }
 
 
-  public void fillContactData(ContactData newContact, boolean creation) {
+  public void fillContactForm(ContactData newContact, boolean creation) {
     type(By.name("firstname"), newContact.getFirstName());
     type(By.name("middlename"), newContact.getMiddleName());
     type(By.name("lastname"), newContact.getLastName());
@@ -36,6 +36,9 @@ public class ContactHelper extends BaseHelper {
     type(By.name("mobile"), newContact.getMobilePhone());
     type(By.name("work"), newContact.getWorkPhone());
     type(By.name("email"), newContact.getEmail1());
+    type(By.name("email2"), newContact.getEmail2());
+    type(By.name("email3"), newContact.getEmail3());
+    attach(By.name("photo"), newContact.getPhoto());
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(newContact.getGroup());
     } else {
@@ -69,7 +72,7 @@ public class ContactHelper extends BaseHelper {
 
   public void create(ContactData contactData) {
     addNew();
-    fillContactData(contactData, true);
+    fillContactForm(contactData, true);
     submitContactCreation();
     contactCache = null;
     returnToHomePage();
@@ -86,7 +89,7 @@ public class ContactHelper extends BaseHelper {
 
   public void modify(ContactData contact) {
     initContactModificationById(contact.getId());
-    fillContactData(contact, false);
+    fillContactForm(contact, false);
     submitUpdateContact();
     contactCache = null;
     returnToHomePage();
@@ -130,8 +133,6 @@ public class ContactHelper extends BaseHelper {
     String email2 = wd.findElement(By.name("email2")).getAttribute("value");
     String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     wd.navigate().back();
-    return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName)
-            .withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone)
-            .withEmail1(email1).withEmail2(email2).withEmail3(email3).withAddress(address);
+    return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName).withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone).withEmail1(email1).withEmail2(email2).withEmail3(email3).withAddress(address);
   }
 }
