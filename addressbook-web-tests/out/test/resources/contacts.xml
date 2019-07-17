@@ -1,6 +1,5 @@
 <list>
-  <ru.stqa.pft.addressbook.model.ContactData>
-    <id>2147483647</id>
+  <contact>
     <firstName>firstName 0</firstName>
     <middleName>middleName 0</middleName>
     <lastName>lastName 0</lastName>
@@ -13,9 +12,8 @@ ss Street, 999/ 0</address>
     <email2>e0_mail2@mail.ru</email2>
     <email3>e0_mail3@mail.ru</email3>
     <group>[none]</group>
-  </ru.stqa.pft.addressbook.model.ContactData>
-  <ru.stqa.pft.addressbook.model.ContactData>
-    <id>2147483647</id>
+  </contact>
+  <contact>
     <firstName>firstName 1</firstName>
     <middleName>middleName 1</middleName>
     <lastName>lastName 1</lastName>
@@ -28,9 +26,8 @@ ss Street, 999/ 1</address>
     <email2>e1_mail2@mail.ru</email2>
     <email3>e1_mail3@mail.ru</email3>
     <group>[none]</group>
-  </ru.stqa.pft.addressbook.model.ContactData>
-  <ru.stqa.pft.addressbook.model.ContactData>
-    <id>2147483647</id>
+  </contact>
+  <contact>
     <firstName>firstName 2</firstName>
     <middleName>middleName 2</middleName>
     <lastName>lastName 2</lastName>
@@ -43,9 +40,8 @@ ss Street, 999/ 2</address>
     <email2>e2_mail2@mail.ru</email2>
     <email3>e2_mail3@mail.ru</email3>
     <group>[none]</group>
-  </ru.stqa.pft.addressbook.model.ContactData>
-  <ru.stqa.pft.addressbook.model.ContactData>
-    <id>2147483647</id>
+  </contact>
+  <contact>
     <firstName>firstName 3</firstName>
     <middleName>middleName 3</middleName>
     <lastName>lastName 3</lastName>
@@ -58,5 +54,5 @@ ss Street, 999/ 3</address>
     <email2>e3_mail2@mail.ru</email2>
     <email3>e3_mail3@mail.ru</email3>
     <group>[none]</group>
-  </ru.stqa.pft.addressbook.model.ContactData>
+  </contact>
 </list>
