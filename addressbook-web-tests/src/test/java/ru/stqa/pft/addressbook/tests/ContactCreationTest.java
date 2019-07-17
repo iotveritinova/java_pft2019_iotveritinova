@@ -53,12 +53,12 @@ public class ContactCreationTest extends TestBase {
   }
 
 
-  @Test(dataProvider = "validContactsFromJson")
-  public void testContactCreation() throws Exception {
+  @Test(dataProvider = "validContactsFromXml")
+  public void testContactCreation(ContactData contact) throws Exception {
     app.goTo().contactPage();
     Contacts before = app.contact().all();
     File photo = new File("src\\test\\resources\\pic1.png");
-    ContactData contact = new ContactData().withFirstName("Petr").withLastName("Petrov").withPhoto(photo);
+    contact = contact.withPhoto(photo);
     app.contact().create(contact);
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     Contacts after = app.contact().all();
