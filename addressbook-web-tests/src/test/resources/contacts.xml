@@ -1,0 +1,58 @@
+<list>
+  <contact>
+    <firstName>firstName 0</firstName>
+    <middleName>middleName 0</middleName>
+    <lastName>lastName 0</lastName>
+    <address>addre
+ss Street, 999/ 0</address>
+    <homePhone>+7(110)</homePhone>
+    <mobilePhone>22-22-20</mobilePhone>
+    <workPhone>000 330</workPhone>
+    <email1>e0_mail1@mail.ru</email1>
+    <email2>e0_mail2@mail.ru</email2>
+    <email3>e0_mail3@mail.ru</email3>
+    <group>[none]</group>
+  </contact>
+  <contact>
+    <firstName>firstName 1</firstName>
+    <middleName>middleName 1</middleName>
+    <lastName>lastName 1</lastName>
+    <address>addre
+ss Street, 999/ 1</address>
+    <homePhone>+7(111)</homePhone>
+    <mobilePhone>22-22-21</mobilePhone>
+    <workPhone>000 331</workPhone>
+    <email1>e1_mail1@mail.ru</email1>
+    <email2>e1_mail2@mail.ru</email2>
+    <email3>e1_mail3@mail.ru</email3>
+    <group>[none]</group>
+  </contact>
+  <contact>
+    <firstName>firstName 2</firstName>
+    <middleName>middleName 2</middleName>
+    <lastName>lastName 2</lastName>
+    <address>addre
+ss Street, 999/ 2</address>
+    <homePhone>+7(112)</homePhone>
+    <mobilePhone>22-22-22</mobilePhone>
+    <workPhone>000 332</workPhone>
+    <email1>e2_mail1@mail.ru</email1>
+    <email2>e2_mail2@mail.ru</email2>
+    <email3>e2_mail3@mail.ru</email3>
+    <group>[none]</group>
+  </contact>
+  <contact>
+    <firstName>firstName 3</firstName>
+    <middleName>middleName 3</middleName>
+    <lastName>lastName 3</lastName>
+    <address>addre
+ss Street, 999/ 3</address>
+    <homePhone>+7(113)</homePhone>
+    <mobilePhone>22-22-23</mobilePhone>
+    <workPhone>000 333</workPhone>
+    <email1>e3_mail1@mail.ru</email1>
+    <email2>e3_mail2@mail.ru</email2>
+    <email3>e3_mail3@mail.ru</email3>
+    <group>[none]</group>
+  </contact>
+</list>

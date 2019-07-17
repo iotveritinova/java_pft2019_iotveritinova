@@ -1,0 +1,50 @@
+[
+  {
+    "firstName": "firstName 0",
+    "middleName": "middleName 0",
+    "lastName": "lastName 0",
+    "address": "addre\nss Street, 999/ 0",
+    "homePhone": "+7(110)",
+    "mobilePhone": "22-22-20",
+    "workPhone": "000 330",
+    "email1": "e0_mail1@mail.ru",
+    "email2": "e0_mail2@mail.ru",
+    "email3": "e0_mail3@mail.ru"
+  },
+  {
+    "firstName": "firstName 1",
+    "middleName": "middleName 1",
+    "lastName": "lastName 1",
+    "address": "addre\nss Street, 999/ 1",
+    "homePhone": "+7(111)",
+    "mobilePhone": "22-22-21",
+    "workPhone": "000 331",
+    "email1": "e1_mail1@mail.ru",
+    "email2": "e1_mail2@mail.ru",
+    "email3": "e1_mail3@mail.ru"
+  },
+  {
+    "firstName": "firstName 2",
+    "middleName": "middleName 2",
+    "lastName": "lastName 2",
+    "address": "addre\nss Street, 999/ 2",
+    "homePhone": "+7(112)",
+    "mobilePhone": "22-22-22",
+    "workPhone": "000 332",
+    "email1": "e2_mail1@mail.ru",
+    "email2": "e2_mail2@mail.ru",
+    "email3": "e2_mail3@mail.ru"
+  },
+  {
+    "firstName": "firstName 3",
+    "middleName": "middleName 3",
+    "lastName": "lastName 3",
+    "address": "addre\nss Street, 999/ 3",
+    "homePhone": "+7(113)",
+    "mobilePhone": "22-22-23",
+    "workPhone": "000 333",
+    "email1": "e3_mail1@mail.ru",
+    "email2": "e3_mail2@mail.ru",
+    "email3": "e3_mail3@mail.ru"
+  }
+]
