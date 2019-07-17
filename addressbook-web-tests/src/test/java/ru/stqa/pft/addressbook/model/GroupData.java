@@ -1,10 +1,14 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.util.Objects;
 
+@XStreamAlias("message")
 public class GroupData {
+  @XStreamOmitField
   private int id = Integer.MAX_VALUE;
-  ;
   private String name;
   private String header;
   private String footer;
@@ -53,8 +57,10 @@ public class GroupData {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
     GroupData groupData = (GroupData) o;
     return id == groupData.id && Objects.equals(name, groupData.name);
   }
