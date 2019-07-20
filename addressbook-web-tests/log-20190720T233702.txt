@@ -1,2 +1,0 @@
-7164 [main] INFO  r.s.pft.addressbook.tests.TestBase - Start test testContactModification
-16585 [main] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testContactModification

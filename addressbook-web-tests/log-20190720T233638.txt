@@ -1,2 +1,0 @@
-8363 [main] INFO  r.s.pft.addressbook.tests.TestBase - Start test testGroupCreation
-13477 [main] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testGroupCreation
