@@ -1,0 +1,2 @@
+7559 [main] INFO  r.s.pft.addressbook.tests.TestBase - Start test testGroupCreation with parameters [GroupData{id=2147483647, name='test 0'}]
+12534 [main] INFO  r.s.pft.addressbook.tests.TestBase - Stop test testGroupCreation
