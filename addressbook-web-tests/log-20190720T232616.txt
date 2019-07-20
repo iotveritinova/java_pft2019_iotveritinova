@@ -1,0 +1,2 @@
+8884 [main] INFO  r.s.p.a.tests.GroupCreationTest - Start test testGroupCreation
+14165 [main] INFO  r.s.p.a.tests.GroupCreationTest - Stop test testGroupCreation
