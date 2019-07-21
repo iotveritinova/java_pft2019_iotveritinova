@@ -3,7 +3,6 @@ package ru.stqa.pft.addressbook.app;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
@@ -40,7 +39,7 @@ public class ContactHelper extends BaseHelper {
     type(By.name("email3"), newContact.getEmail3());
     attach(By.name("photo"), newContact.getPhoto());
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(newContact.getGroup());
+      //new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(newContact.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
