@@ -80,7 +80,6 @@ public class ContactDataGenerator {
   private List<ContactData> generateContacts(int count) {
     List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++) {
-      //contacts.add(new ContactData().withFirstName(String.format("firstName $s", i)).withLastName(String.format("lastName $s", i)).withMiddleName(String.format("middleName $s", i)).withAddress(String.format("addre\nss Street, 999/ $s$$s", i)).withHomePhone(String.format("+7($s$s$s)", i)).withMobilePhone(String.format("$s$s-$s$s-$s$s", i)).withWorkPhone(String.format("$s$s$s $s$s$s", i)).withEmail1(String.format("e$s_mail1@mail.ru", i)).withEmail2(String.format("e$s_mail2@mail.ru", i)).withEmail3(String.format("e$s_mail3@mail.ru", i)));
       contacts.add(new ContactData().withFirstName(String.format("firstName %s", i)).withLastName(String.format("lastName %s", i)).withMiddleName(String.format("middleName %s", i)).withAddress(String.format("addre\nss Street, 999/ %s", i)).withHomePhone(String.format("+7(11%s)", i)).withMobilePhone(String.format("22-22-2%s", i)).withWorkPhone(String.format("000 33%s", i)).withEmail1(String.format("e%s_mail1@mail.ru", i)).withEmail2(String.format("e%s_mail2@mail.ru", i)).withEmail3(String.format("e%s_mail3@mail.ru", i)));
     }
     return contacts;
