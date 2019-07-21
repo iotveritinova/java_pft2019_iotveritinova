@@ -163,4 +163,15 @@ public class ContactHelper extends BaseHelper {
     submitAddToGroup();
     returnToHomePage();
   }
+
+  public void removeFromGroup(ContactData contact, GroupData group) {
+    displayGroupOnHomePage(group);
+    selectContactById(contact.getId());
+    submitRemovalFromGroup();
+    returnToHomePage();
+  }
+
+  private void submitRemovalFromGroup() {
+    click(By.cssSelector("input[name='remove']"));
+  }
 }
