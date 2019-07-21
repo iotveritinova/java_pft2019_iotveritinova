@@ -75,6 +75,11 @@ public class ContactData {
     this.groups = groups;
   }
 
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
+  }
+
   public int getId() {
     return id;
   }
