@@ -13,8 +13,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactPhonesTest extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().contactPage();
-    if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
+      app.goTo().contactPage();
       app.contact().create(new ContactData().withFirstName("Petr").withLastName("Petrov").withHomePhone("+7(111)").withMobilePhone("222-222").withWorkPhone("33 333 33"));
     }
   }
@@ -27,15 +27,10 @@ public class ContactPhonesTest extends TestBase {
   }
 
   private String mergePhones(ContactData contact) {
-    return Arrays.asList(contact.getHomePhone()
-            , contact.getMobilePhone()
-            , contact.getWorkPhone())
-            .stream().filter((s) -> !s.equals(""))
-            .map(ContactPhonesTest::cleaned)
-            .collect(Collectors.joining("\n"));
+    return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone()).stream().filter((s) -> !s.equals("")).map(ContactPhonesTest::cleaned).collect(Collectors.joining("\n"));
   }
 
   public static String cleaned(String phone) {
-    return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+    return phone.replaceAll("\\s", "").replaceAll("[-()]", "").replaceAll("^00", "+");
   }
 }

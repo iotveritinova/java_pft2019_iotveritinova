@@ -13,8 +13,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactAddressTest extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
-    app.goTo().contactPage();
-    if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
+      app.goTo().contactPage();
       app.contact().create(new ContactData().withFirstName("Petr").withLastName("Petrov").withAddress("\n" + "\n" + "  г.Москва, ул.(Большая) Садовая\n" + "\n" + "         \n" + ";22/33,\n" + "  кв \"18\" БjhgБ\n" + "  "));
     }
   }
