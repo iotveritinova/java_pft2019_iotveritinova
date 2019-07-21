@@ -23,20 +23,21 @@ public class ContactInsertionToGroupTest extends TestBase {
       app.goTo().groupPage();
       app.group().create(new GroupData().withName("test1"));
     }
-    //is choosen contact already added in choosen group?
-    //is choosen contact already added in all groups?
   }
 
   @Test
   public void testContactInsertionToGroup() throws Exception {
     //choose group and contact
-    Groups groups = app.db().groups();
-    GroupData group = groups.iterator().next();
-    Contacts before = app.db().contacts();
-    ContactData contact = before.iterator().next();
-    contact.getGroups();
-    //adding contact to group
+    GroupData group = app.db().groups().iterator().next();
+    ContactData contact = app.db().contacts().iterator().next();
     app.goTo().contactPage();
+    //is choosen contact already added in choosen group?
+    if (contact.getGroups() == contact.inGroup(group).getGroups()) {
+      app.contact().removeFromGroup(contact, group);
+    }
+    Groups groups = app.db().groups();
+    Contacts before = app.db().contacts();
+    //adding contact to group
     app.contact().addToGroup(contact, group);
     assertThat(app.contact().count(), equalTo(before.size()));
     Contacts after = app.db().contacts();
