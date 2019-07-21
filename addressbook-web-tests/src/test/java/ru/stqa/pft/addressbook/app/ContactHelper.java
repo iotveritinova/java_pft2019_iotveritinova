@@ -40,10 +40,7 @@ public class ContactHelper extends BaseHelper {
     type(By.name("email3"), newContact.getEmail3());
     attach(By.name("photo"), newContact.getPhoto());
     if (creation) {
-      if (newContact.getGroups().size() > 0) {
-        Assert.assertTrue(newContact.getGroups().size() == 1);
-        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(newContact.getGroups().iterator().next().getName());
-      }
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(newContact.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
