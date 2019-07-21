@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -137,5 +138,29 @@ public class ContactHelper extends BaseHelper {
     String email3 = wd.findElement(By.name("email3")).getAttribute("value");
     wd.navigate().back();
     return new ContactData().withId(contact.getId()).withFirstName(firstName).withLastName(lastName).withHomePhone(homePhone).withMobilePhone(mobilePhone).withWorkPhone(workPhone).withEmail1(email1).withEmail2(email2).withEmail3(email3).withAddress(address);
+  }
+
+  private void displayGroupOnHomePage(GroupData group) {
+    click(By.cssSelector(String.format("select[name=\"group\"] > option[value=\"%s\"]", group.getId())));
+  }
+
+  private void displayGroupOnHomePage(String groupName) {
+    new Select(wd.findElement(By.name("group"))).selectByVisibleText(String.format("%s", groupName));
+  }
+
+  private void selectGroupOnHomePage(GroupData group) {
+    click(By.cssSelector(String.format("select[name=\"to_group\"] > option[value=\"%s\"]", group.getId())));
+  }
+
+  private void submitAddToGroup() {
+    click(By.cssSelector("input[value='Add to']"));
+  }
+
+  public void addToGroup(ContactData contact, GroupData group) {
+    displayGroupOnHomePage("[all]");
+    selectContactById(contact.getId());
+    selectGroupOnHomePage(group);
+    submitAddToGroup();
+    returnToHomePage();
   }
 }
