@@ -34,7 +34,7 @@ public class ContactRemovalFromGroupTest extends TestBase {
     ContactData contact = app.db().contacts().iterator().next();
     app.goTo().contactPage();
     //is choosen contact not yet in choosen group?
-    if (contact.getGroups()!= contact.inGroup(group).getGroups()) {
+    if (contact.getGroups() != contact.inGroup(group).getGroups()) {
       app.contact().addToGroup(contact, group);
     }
     Groups groups = app.db().groups();
@@ -44,7 +44,7 @@ public class ContactRemovalFromGroupTest extends TestBase {
     assertThat(app.contact().count(), equalTo(before.size() - 1));
     Contacts after = app.db().contacts();
     assertThat(after.without(contact).withAdded(contact.inGroup(group)), equalTo(before));
-    //verifyGroupListInUI();
+    assertThat(getGroupsListAsIs(before), equalTo(getGroupsListPlus(after, contact, group)));
   }
 
 }

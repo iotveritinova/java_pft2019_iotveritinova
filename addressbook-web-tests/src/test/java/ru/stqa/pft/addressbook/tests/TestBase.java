@@ -8,12 +8,16 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import ru.stqa.pft.addressbook.app.ApplicationManager;
+import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -61,5 +65,25 @@ public class TestBase {
               .map((g) -> new GroupData().withId(g.getId()).withName(g.getName()))
               .collect(Collectors.toSet())));
     }
+  }
+
+  protected Set<Groups> getGroupsListPlus(Contacts contactsList, ContactData contact, GroupData group) {
+    Set<Groups> groupsList = new HashSet<Groups>();
+    for (ContactData s : contactsList) {
+      if (s.getId() != contact.getId()) {
+        groupsList.add(s.getGroups());
+      } else {
+        groupsList.add(s.inGroup(group).getGroups());
+      }
+    }
+    return groupsList;
+  }
+
+  protected Set<Groups> getGroupsListAsIs(Contacts contactsList) {
+    Set<Groups> groupsList = new HashSet<Groups>();
+    for (ContactData s : contactsList) {
+      groupsList.add(s.getGroups());
+    }
+    return groupsList;
   }
 }
