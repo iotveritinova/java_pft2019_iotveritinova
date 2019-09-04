@@ -231,4 +231,8 @@ public class ContactData {
   public String toString() {
     return "ContactData{" + "id=" + id + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\'' + '}';
   }
+
+  public ContactData getContact(Contacts contacts) {
+    return contacts.stream().filter((c) -> c.equals(this)).findFirst().get();
+  }
 }
