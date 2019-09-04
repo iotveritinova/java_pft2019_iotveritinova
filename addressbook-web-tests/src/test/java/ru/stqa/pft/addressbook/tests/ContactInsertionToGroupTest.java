@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
-import ru.stqa.pft.addressbook.model.Groups;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -32,7 +31,7 @@ public class ContactInsertionToGroupTest extends TestBase {
     ContactData contact = app.db().contacts().iterator().next();
     app.goTo().contactPage();
     //is choosen contact already added in choosen group?
-    if (contact.getGroups() == contact.inGroup(group).getGroups()) {
+    if (contact.getGroups().contains(group)) {
       app.contact().removeFromGroup(contact, group);
     }
     //Groups groups = app.db().groups();
@@ -44,23 +43,7 @@ public class ContactInsertionToGroupTest extends TestBase {
     Contacts after = app.db().contacts();
     ContactData contactAfter = contact.getContact(after);
     //проверка групп
-    //  assertThat(getGroupsListAsIs(after), equalTo(getGroupsListPlus(before, contact, group)));
-    System.out.println("summary log:");
-    System.out.println("selected group is " + group);
-    Groups groupsBefore = contactBefore.getGroups();
-    Groups groupsAfter = contactAfter.getGroups();
-    //System.out.println("groups of selected contact " + contact.getGroups());
-    System.out.println("groups of initial contact " + groupsBefore);
-    //System.out.println("groups of expectedly changedcontact " + contactBefore.inGroup(group).getGroups());
-    System.out.println("groups of really changed contact " + groupsAfter);
-    System.out.println(groupsBefore.size());
-    System.out.println(groupsAfter.size());
-    System.out.println(contactBefore.getGroups().size());
-    System.out.println(contactAfter.getGroups().size());
-    assertThat(contactBefore.getGroups().size(), equalTo(contactAfter.getGroups().size()-1));
-    //assertThat(contactBefore.getGroups().size(), equalTo(contactAfter.getGroups().size() - 1));
-    System.out.println("is there selected group before " + contactBefore.getGroups().contains(group));//groupsBefore.contains(group));
-    System.out.println("is there selected group after " + groupsAfter.contains(group));
+    assertThat(contactBefore.getGroups().size(), equalTo(contactAfter.getGroups().size() - 1));
     assertThat(contactBefore.getGroups().contains(group), equalTo(!contactAfter.getGroups().contains(group)));
     assertThat(contactBefore.inGroup(group).getGroups(), equalTo(contactAfter.getGroups()));
   }

@@ -33,7 +33,7 @@ public class ContactRemovalFromGroupTest extends TestBase {
     ContactData contact = app.db().contacts().iterator().next();
     app.goTo().contactPage();
     //is choosen contact not yet in choosen group?
-    if (contact.getGroups() != contact.inGroup(group).getGroups()) {
+    if (!contact.getGroups().contains(group)) {
       app.contact().addToGroup(contact, group);
     }
     Contacts before = app.db().contacts();
