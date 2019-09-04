@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 import ru.stqa.pft.addressbook.model.GroupData;
-import ru.stqa.pft.addressbook.model.Groups;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -37,14 +36,15 @@ public class ContactRemovalFromGroupTest extends TestBase {
     if (contact.getGroups() != contact.inGroup(group).getGroups()) {
       app.contact().addToGroup(contact, group);
     }
-    Groups groups = app.db().groups();
     Contacts before = app.db().contacts();
+    ContactData contactBefore = contact.getContact(before);
     //adding contact to group
     app.contact().removeFromGroup(contact, group);
-    assertThat(app.contact().count(), equalTo(before.size() - 1));
     Contacts after = app.db().contacts();
-    assertThat(after.without(contact).withAdded(contact.inGroup(group)), equalTo(before));
-    assertThat(getGroupsListAsIs(before), equalTo(getGroupsListPlus(after, contact, group)));
+    ContactData contactAfter = contact.getContact(after);
+    assertThat(contactBefore.getGroups().size(), equalTo(contactAfter.getGroups().size() + 1));
+    assertThat(contactBefore.getGroups().contains(group), equalTo(!contactAfter.getGroups().contains(group)));
+    assertThat(contactBefore.getGroups(), equalTo(contactAfter.inGroup(group).getGroups()));
   }
 
 }
