@@ -34,7 +34,7 @@ public class ContactInsertionToGroupTest extends TestBase {
     if (contact.getGroups().contains(group)) {
       app.contact().removeFromGroup(contact, group);
     }
-    //Groups groups = app.db().groups();
+    //Groups groups = appmanager.db().groups();
     Contacts before = app.db().contacts();
     ContactData contactBefore = contact.getContact(before);
     //adding contact to group
