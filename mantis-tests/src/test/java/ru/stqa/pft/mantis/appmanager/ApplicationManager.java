@@ -19,7 +19,6 @@ public class ApplicationManager {
   private FtpHelper ftp;
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
-  private NavigationHelper navigate;
 
   public ApplicationManager(String browser) throws IOException {
     this.browser = browser;
@@ -31,7 +30,6 @@ public class ApplicationManager {
     properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
   }
-
 
   public void stop() {
     if (wd != null) {
@@ -73,13 +71,6 @@ public class ApplicationManager {
       jamesHelper = new JamesHelper(this);
     }
     return jamesHelper;
-  }
-
-  public NavigationHelper goTo() {
-    if (navigate == null) {
-      navigate = new NavigationHelper(this);
-    }
-    return navigate;
   }
 
   public WebDriver getDriver() {

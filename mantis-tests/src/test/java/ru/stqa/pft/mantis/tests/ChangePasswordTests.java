@@ -1,45 +1,36 @@
 package ru.stqa.pft.mantis.tests;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.model.MailMessage;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
 public class ChangePasswordTests extends TestBase {
+  @BeforeMethod
+  public void startMailServer() {
+    app.mail().start();
+  }
+
   @Test
-  public void testChangePassword() throws IOException {
+  public void testChangePassword() throws IOException, MessagingException {
+    String username = "userForPassChange";
+    String newPassword = "password2";
+    String email = "userForPassChange@localhost.localdomain";
     String adminlogin = "administrator";
     String adminpass = "root";
-    String username = "userForPassChange";
-    String password = "password";
-    app.mail().start();
-    String email = "userForPassChange@localhost.localdomain";
-    app.goTo().login(adminlogin, adminpass);
-    // переходит на страницу управления пользователями,
-    //app.goTo().click(By.cssSelector("a[href='/mantisbt-2.22.0/manage_overview_page.php']"));
-    //app.goTo().click(By.cssSelector("a[href='/mantisbt-2.22.0/manage_user_page.php']"));
-    // выбирает заданного пользователя и нажимает кнопку Reset Password
-    app.goTo().initPasswordReset(username);
-    List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
+    app.registration().login(adminlogin, adminpass);
+    app.registration().initPasswordReset(username);
+    List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
     String passwordResetLink = findPasswordResetLink(mailMessages, email);
-    //app.registration().finish(confirmationLink, password);
-    assertTrue(app.newSession().login(username, password));
-
-
-    //st2
-    // ui
-    // Отправляется письмо на адрес пользователя,
-    // тесты должны получить это письмо,
-    // извлечь из него ссылку для смены пароля,
-    // пройти по этой ссылке и изменить пароль.
-    //st3
-    // http
-    // проверить, что пользователь может войти в систему с новым паролем.
-    app.mail().stop();
+    app.registration().finish(passwordResetLink, newPassword);
+    assertTrue(app.newSession().login(username, newPassword));
   }
 
   private String findPasswordResetLink(List<MailMessage> mailMessages, String email) {
@@ -48,5 +39,8 @@ public class ChangePasswordTests extends TestBase {
     return regex.getText(mailMessage.text);
   }
 
-
+  @AfterMethod(alwaysRun = true)
+  public void stopMailServer() {
+    app.mail().stop();
+  }
 }
