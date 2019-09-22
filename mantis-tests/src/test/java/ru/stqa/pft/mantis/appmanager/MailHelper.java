@@ -54,5 +54,4 @@ public class MailHelper {
       return null;
     }
   }
-
 }
