@@ -1,5 +1,7 @@
 package ru.stqa.pft.mantis.tests;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.model.MailMessage;
@@ -10,13 +12,21 @@ import java.util.List;
 import static org.testng.Assert.assertTrue;
 
 public class ChangePasswordTests extends TestBase {
+  //i didn't use telnet because idea was out of memory immediately
+  @BeforeMethod
+  public void startMailServer() {
+    app.mail().start();
+  }
+
   @Test
   public void testChangePassword() throws IOException {
+    //st1
+    // ui
+    // Администратор входит в систему через UI
     String adminlogin = "administrator";
     String adminpass = "root";
     String username = "userForPassChange";
     String password = "password";
-    app.mail().start();
     String email = "userForPassChange@localhost.localdomain";
     app.goTo().login(adminlogin, adminpass);
     // переходит на страницу управления пользователями,
@@ -39,6 +49,11 @@ public class ChangePasswordTests extends TestBase {
     //st3
     // http
     // проверить, что пользователь может войти в систему с новым паролем.
+
+  }
+
+  @AfterMethod(alwaysRun = true)
+  public void stopMailServer() {
     app.mail().stop();
   }
 
@@ -47,6 +62,5 @@ public class ChangePasswordTests extends TestBase {
     VerbalExpression regex = VerbalExpression.regex().find("http://").nonSpace().oneOrMore().build();
     return regex.getText(mailMessage.text);
   }
-
 
 }

@@ -36,7 +36,7 @@ public class JamesHelper {
 
   public void createUser(String name, String password) {
     initTelnetSession();
-    write("adduser " + name + " pass3");
+    write("adduser  " + name + " " + password);
     String result = readUntil("User " + name + " added");
     closeTelnetSession();
   }
@@ -71,7 +71,7 @@ public class JamesHelper {
     readUntil("Password:");
     write(password);
     //read welcome message
-    readUntil("Welcome " + login + ". HELP for a list of commands");
+    readUntil("Welcome " + login + ". HELP for list of commands");
   }
 
   private void closeTelnetSession() {
@@ -133,13 +133,10 @@ public class JamesHelper {
     long start = System.currentTimeMillis();
     while (System.currentTimeMillis() < start + timeout) {
       List<MailMessage> allMail = getAllMail(username, password);
-      System.out.println(allMail.size());
       if (allMail.size() > 0) {
-        System.out.println("return allMail;" + allMail.size());
         return allMail;
-
       }
-      try {  System.out.println("Thread.sleep(1000);");
+      try {
         Thread.sleep(1000);
       } catch (InterruptedException e) {
         e.printStackTrace();
