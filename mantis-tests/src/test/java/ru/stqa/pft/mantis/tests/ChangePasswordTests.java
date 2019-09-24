@@ -5,6 +5,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
 import ru.stqa.pft.mantis.model.MailMessage;
+import ru.stqa.pft.mantis.model.UserData;
 
 import javax.mail.MessagingException;
 import java.io.IOException;
@@ -20,11 +21,12 @@ public class ChangePasswordTests extends TestBase {
 
   @Test
   public void testChangePassword() throws IOException, MessagingException {
-    String username = "userForPassChange";
-    String newPassword = "password2";
-    String email = "userForPassChange@localhost.localdomain";
     String adminlogin = "administrator";
     String adminpass = "root";
+    UserData user = app.db().userData().iterator().next();
+    String username = user.getUsername();
+    String email = user.getEmail();
+    String newPassword = "newpassword000";
     app.registration().login(adminlogin, adminpass);
     app.registration().initPasswordReset(username);
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
