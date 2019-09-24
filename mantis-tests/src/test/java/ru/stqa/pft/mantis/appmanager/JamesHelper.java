@@ -36,8 +36,9 @@ public class JamesHelper {
 
   public void createUser(String name, String password) {
     initTelnetSession();
-    write("adduser " + name + " pass3");
-    String result = readUntil("User " + name + " added");
+    write("adduser " + name + " " + password);
+    //String result =
+    readUntil("User " + name + " added");
     closeTelnetSession();
   }
 
@@ -56,7 +57,7 @@ public class JamesHelper {
     try {
       telnet.connect(mailserver, port);
       in = telnet.getInputStream();
-      out = new PrintStream((telnet.getOutputStream()));
+      out = new PrintStream(telnet.getOutputStream());
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -79,9 +80,9 @@ public class JamesHelper {
   }
 
   private String readUntil(String pattern) {
-    char lastChar = pattern.charAt(pattern.length() - 1);
-    StringBuffer sb = new StringBuffer();
     try {
+      char lastChar = pattern.charAt(pattern.length() - 1);
+      StringBuffer sb = new StringBuffer();
       char ch = (char) in.read();
       while (true) {
         System.out.print(ch);
@@ -139,7 +140,8 @@ public class JamesHelper {
         return allMail;
 
       }
-      try {  System.out.println("Thread.sleep(1000);");
+      try {
+        System.out.println("Thread.sleep(1000);");
         Thread.sleep(1000);
       } catch (InterruptedException e) {
         e.printStackTrace();
