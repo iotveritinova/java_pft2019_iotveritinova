@@ -4,6 +4,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
+import ru.stqa.pft.mantis.appmanager.HttpSession;
 import ru.stqa.pft.mantis.model.MailMessage;
 import ru.stqa.pft.mantis.model.UserData;
 
@@ -21,8 +22,8 @@ public class ChangePasswordTests extends TestBase {
 
   @Test
   public void testChangePassword() throws IOException, MessagingException {
-    String adminlogin = "administrator";
-    String adminpass = "root";
+    String adminlogin = app.getProperty("web.adminLogin");
+    String adminpass = app.getProperty("web.adminPassword");
     UserData user = app.db().userData().iterator().next();
     String username = user.getUsername();
     String email = user.getEmail();
@@ -32,7 +33,9 @@ public class ChangePasswordTests extends TestBase {
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);
     String passwordResetLink = findPasswordResetLink(mailMessages, email);
     app.registration().finish(passwordResetLink, newPassword);
-    assertTrue(app.newSession().login(username, newPassword));
+    HttpSession session = app.newSession();
+    assertTrue(session.login(username, newPassword));
+    assertTrue(session.isLoggedInAs(username));
   }
 
   private String findPasswordResetLink(List<MailMessage> mailMessages, String email) {
