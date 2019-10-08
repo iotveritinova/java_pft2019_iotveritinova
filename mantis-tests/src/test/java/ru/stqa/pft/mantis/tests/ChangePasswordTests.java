@@ -24,10 +24,12 @@ public class ChangePasswordTests extends TestBase {
   public void testChangePassword() throws IOException, MessagingException {
     String adminlogin = app.getProperty("web.adminLogin");
     String adminpass = app.getProperty("web.adminPassword");
-    UserData user = app.db().userData().iterator().next();
+    UserData user = app.db().userData().without(new UserData().setId(1).setUsername(adminlogin)).iterator().next();
     String username = user.getUsername();
     String email = user.getEmail();
-    String newPassword = "newpassword000";
+    String oldPassword = user.getPassword();
+    Long now = System.currentTimeMillis();
+    String newPassword = String.format("newpassword%s", now);
     app.registration().login(adminlogin, adminpass);
     app.registration().initPasswordReset(username);
     List<MailMessage> mailMessages = app.mail().waitForMail(1, 10000);

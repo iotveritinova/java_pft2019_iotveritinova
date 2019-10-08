@@ -20,57 +20,55 @@ public class UserData {
   @Column(name = "email")
   private String email;
 
-  public void setId(int id) {
+  public UserData setId(int id) {
     this.id = id;
+    return this;
   }
 
   public String getUsername() {
     return username;
   }
 
-  public void setUsername(String username) {
+  public UserData setUsername(String username) {
     this.username = username;
+    return this;
   }
 
   public String getPassword() {
     return password;
   }
 
-  public void setPassword(String password) {
+  public UserData setPassword(String password) {
     this.password = password;
+    return this;
   }
 
   public String getEmail() {
     return email;
   }
 
-  public void setEmail(String email) {
+  public UserData setEmail(String email) {
     this.email = email;
+    return this;
   }
 
   @Override
   public String toString() {
-    return "User{" +
-            "id=" + id +
-            ", username='" + username + '\'' +
-            ", password='" + password + '\'' +
-            ", email='" + email + '\'' +
-            '}';
+    return "UserData{" + "id=" + id + ", username='" + username + '\'' + '}';
   }
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    UserData user = (UserData) o;
-    return id == user.id &&
-            Objects.equals(username, user.username) &&
-            Objects.equals(password, user.password) &&
-            Objects.equals(email, user.email);
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    UserData userData = (UserData) o;
+    return id == userData.id && Objects.equals(username, userData.username);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, username, password, email);
+    return Objects.hash(id, username);
   }
 }
