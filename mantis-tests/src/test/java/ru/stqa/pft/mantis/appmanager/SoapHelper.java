@@ -14,11 +14,17 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class SoapHelper extends HelperBase {
+  private final String admLogin;
+  private final String admPass;
   private ApplicationManager app;
+  private String apiUrl;
 
   public SoapHelper(ApplicationManager app) {
     super(app);
     this.app = app;
+    this.admLogin = app.getProperty("web.adminLogin");
+    this.admPass = app.getProperty("web.adminPassword");
+    this.apiUrl=app.getProperty("web.baseUrl") + "/api/soap/mantisconnect.php";
   }
 
   public Set<Project> getProjects() throws MalformedURLException, RemoteException, ServiceException {
@@ -27,14 +33,13 @@ public class SoapHelper extends HelperBase {
     return Arrays.asList(projects).stream().map((p) -> new Project().withId(p.getId().intValue()).withName(p.getName())).collect(Collectors.toSet());
   }
 
-  private MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
-    return new MantisConnectLocator().getMantisConnectPort(new URL(app.getProperty("web.baseUrl") + "/api/soap/mantisconnect.php"));
+  public MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
+    return new MantisConnectLocator().getMantisConnectPort(new URL(apiUrl));
   }
 
   public Issue addIssue(Issue issue) throws MalformedURLException, ServiceException, RemoteException {
     MantisConnectPortType mc = getMantisConnect();
-    String admLogin = app.getProperty("web.adminLogin");
-    String admPass = app.getProperty("web.adminPassword");
+
     String[] categories = mc.mc_project_get_categories(admLogin, admPass, BigInteger.valueOf(issue.getProject().getId()));
     IssueData issueData = new IssueData();
     issueData.setSummary(issue.getSummary());
@@ -51,5 +56,11 @@ public class SoapHelper extends HelperBase {
                     .withId(createdIssueData.getProject().getId().intValue())
                     .withName(createdIssueData.getProject().getName())
             );
+  }
+
+  public Object getStatus(int issueId) throws MalformedURLException, ServiceException, RemoteException {
+    MantisConnectPortType mc = getMantisConnect();
+    String statusName = mc.mc_issue_get(admLogin, admPass, BigInteger.valueOf(issueId)).getStatus().getName();
+    return statusName;
   }
 }
