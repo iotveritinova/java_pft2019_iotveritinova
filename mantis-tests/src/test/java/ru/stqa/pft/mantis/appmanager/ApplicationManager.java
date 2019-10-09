@@ -20,6 +20,7 @@ public class ApplicationManager {
   private MailHelper mailHelper;
   private JamesHelper jamesHelper;
   private DbHelper dbHelper;
+  private SoapHelper soapHelper;
 
   public ApplicationManager(String browser) throws IOException {
     this.browser = browser;
@@ -81,6 +82,12 @@ public class ApplicationManager {
     return dbHelper;
   }
 
+  public SoapHelper soap() {
+    if (soapHelper == null) {
+      soapHelper = new SoapHelper(this);
+    }
+    return soapHelper;
+  }
 
   public WebDriver getDriver() {
     if (wd == null) {
