@@ -15,9 +15,9 @@ public class TestBase {
   }
 
   private boolean isIssueOpen(int issueId) {
-    String json = RestAssured.get("https://bugify.stqa.ru/api/issues.json?limit=500").asString();
+    String json = RestAssured.get("https://bugify.stqa.ru/api/issues/"+issueId+".json").asString();
     JsonElement issues = new JsonParser().parse(json).getAsJsonObject().get("issues");
-    JsonElement issue = issues.getAsJsonArray().get(issueId);
+    JsonElement issue = issues.getAsJsonArray().get(0);
     String issue_state = issue.getAsJsonObject().get("state_name").toString();
     return issue_state.contains("Open");
   }
