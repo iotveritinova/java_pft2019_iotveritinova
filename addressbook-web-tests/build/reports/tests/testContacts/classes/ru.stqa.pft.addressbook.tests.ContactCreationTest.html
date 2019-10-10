@@ -23,7 +23,7 @@
 <tr>
 <td>
 <div class="infoBox" id="tests">
-<div class="counter">1</div>
+<div class="counter">2</div>
 <p>tests</p>
 </div>
 </td>
@@ -41,7 +41,7 @@
 </td>
 <td>
 <div class="infoBox" id="duration">
-<div class="counter">11.443s</div>
+<div class="counter">8.854s</div>
 <p>duration</p>
 </div>
 </td>
@@ -64,7 +64,10 @@
 <a href="#tab0">Tests</a>
 </li>
 <li>
-<a href="#tab1">Standard error</a>
+<a href="#tab1">Standard output</a>
+</li>
+<li>
+<a href="#tab2">Standard error</a>
 </li>
 </ul>
 <div id="tab0" class="tab">
@@ -78,13 +81,95 @@
 </tr>
 </thead>
 <tr>
-<td class="success">testContactCreation[0](ContactData{id=0, firstName='firstName 2', lastName='lastName 2'})</td>
-<td class="success">11.443s</td>
+<td class="success">testContactCreation[0](ContactData{id=0, firstName='firstName 0', lastName='lastName 0'})</td>
+<td class="success">4.336s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">testContactCreation[1](ContactData{id=0, firstName='firstName 1', lastName='lastName 1'})</td>
+<td class="success">4.518s</td>
 <td class="success">passed</td>
 </tr>
 </table>
 </div>
 <div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>22:08:45.731 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Start test testContactCreation with parameters [ContactData{id=0, firstName='firstName 0', lastName='lastName 0'}]
+Hibernate: select groupdata0_.group_id as group_id1_2_, groupdata0_.group_footer as group_fo2_2_, groupdata0_.group_header as group_he3_2_, groupdata0_.group_name as group_na4_2_ from group_list groupdata0_
+GroupData{id=241, name='test 1'}
+GroupData{id=246, name='changedGroup1'}
+GroupData{id=248, name='changedGroup1'}
+GroupData{id=251, name='test 0'}
+GroupData{id=252, name='test 1'}
+Hibernate: select groupdata0_.group_id as group_id1_2_, groupdata0_.group_footer as group_fo2_2_, groupdata0_.group_header as group_he3_2_, groupdata0_.group_name as group_na4_2_ from group_list groupdata0_
+GroupData{id=241, name='test 1'}
+GroupData{id=246, name='changedGroup1'}
+GroupData{id=248, name='changedGroup1'}
+GroupData{id=251, name='test 0'}
+GroupData{id=252, name='test 1'}
+Hibernate: select contactdat0_.id as id1_1_, contactdat0_.address as address2_1_, contactdat0_.email as email3_1_, contactdat0_.email2 as email4_1_, contactdat0_.email3 as email5_1_, contactdat0_.firstname as firstnam6_1_, contactdat0_.home as home7_1_, contactdat0_.lastname as lastname8_1_, contactdat0_.middlename as middlena9_1_, contactdat0_.mobile as mobile10_1_, contactdat0_.photo as photo11_1_, contactdat0_.work as work12_1_ from addressbook contactdat0_ where deprecated='0000-00-00'
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+ContactData{id=276, firstName='firstName 0', lastName='lastName 0'}
+ContactData{id=286, firstName='changedName', lastName='changedSurname'}
+ContactData{id=287, firstName='changedName', lastName='changedSurname'}
+ContactData{id=288, firstName='firstName 0', lastName='lastName 0'}
+ContactData{id=289, firstName='firstName 1', lastName='lastName 1'}
+Hibernate: select contactdat0_.id as id1_1_, contactdat0_.address as address2_1_, contactdat0_.email as email3_1_, contactdat0_.email2 as email4_1_, contactdat0_.email3 as email5_1_, contactdat0_.firstname as firstnam6_1_, contactdat0_.home as home7_1_, contactdat0_.lastname as lastname8_1_, contactdat0_.middlename as middlena9_1_, contactdat0_.mobile as mobile10_1_, contactdat0_.photo as photo11_1_, contactdat0_.work as work12_1_ from addressbook contactdat0_ where deprecated='0000-00-00'
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+ContactData{id=276, firstName='firstName 0', lastName='lastName 0'}
+ContactData{id=286, firstName='changedName', lastName='changedSurname'}
+ContactData{id=287, firstName='changedName', lastName='changedSurname'}
+ContactData{id=288, firstName='firstName 0', lastName='lastName 0'}
+ContactData{id=289, firstName='firstName 1', lastName='lastName 1'}
+ContactData{id=290, firstName='firstName 0', lastName='lastName 0'}
+Hibernate: select groupdata0_.group_id as group_id1_2_, groupdata0_.group_footer as group_fo2_2_, groupdata0_.group_header as group_he3_2_, groupdata0_.group_name as group_na4_2_ from group_list groupdata0_
+GroupData{id=241, name='test 1'}
+GroupData{id=246, name='changedGroup1'}
+GroupData{id=248, name='changedGroup1'}
+GroupData{id=251, name='test 0'}
+GroupData{id=252, name='test 1'}
+Hibernate: select contactdat0_.id as id1_1_, contactdat0_.address as address2_1_, contactdat0_.email as email3_1_, contactdat0_.email2 as email4_1_, contactdat0_.email3 as email5_1_, contactdat0_.firstname as firstnam6_1_, contactdat0_.home as home7_1_, contactdat0_.lastname as lastname8_1_, contactdat0_.middlename as middlena9_1_, contactdat0_.mobile as mobile10_1_, contactdat0_.photo as photo11_1_, contactdat0_.work as work12_1_ from addressbook contactdat0_ where deprecated='0000-00-00'
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+ContactData{id=276, firstName='firstName 0', lastName='lastName 0'}
+ContactData{id=286, firstName='changedName', lastName='changedSurname'}
+ContactData{id=287, firstName='changedName', lastName='changedSurname'}
+ContactData{id=288, firstName='firstName 0', lastName='lastName 0'}
+ContactData{id=289, firstName='firstName 1', lastName='lastName 1'}
+ContactData{id=290, firstName='firstName 0', lastName='lastName 0'}
+Hibernate: select contactdat0_.id as id1_1_, contactdat0_.address as address2_1_, contactdat0_.email as email3_1_, contactdat0_.email2 as email4_1_, contactdat0_.email3 as email5_1_, contactdat0_.firstname as firstnam6_1_, contactdat0_.home as home7_1_, contactdat0_.lastname as lastname8_1_, contactdat0_.middlename as middlena9_1_, contactdat0_.mobile as mobile10_1_, contactdat0_.photo as photo11_1_, contactdat0_.work as work12_1_ from addressbook contactdat0_ where deprecated='0000-00-00'
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+Hibernate: select groups0_.id as id1_0_0_, groups0_.group_id as group_id2_0_0_, groupdata1_.group_id as group_id1_2_1_, groupdata1_.group_footer as group_fo2_2_1_, groupdata1_.group_header as group_he3_2_1_, groupdata1_.group_name as group_na4_2_1_ from address_in_groups groups0_ inner join group_list groupdata1_ on groups0_.group_id=groupdata1_.group_id where groups0_.id=?
+ContactData{id=276, firstName='firstName 0', lastName='lastName 0'}
+ContactData{id=286, firstName='changedName', lastName='changedSurname'}
+ContactData{id=287, firstName='changedName', lastName='changedSurname'}
+ContactData{id=288, firstName='firstName 0', lastName='lastName 0'}
+ContactData{id=289, firstName='firstName 1', lastName='lastName 1'}
+ContactData{id=290, firstName='firstName 0', lastName='lastName 0'}
+ContactData{id=291, firstName='firstName 1', lastName='lastName 1'}
+</pre>
+</span>
+</div>
+<div id="tab2" class="tab">
 <h2>Standard error</h2>
 <span class="code">
 <pre>Security framework of XStream not initialized, XStream is probably vulnerable.
@@ -99,7 +184,7 @@
 <input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
 </label>
 </div>Generated by 
-<a href="http://www.gradle.org">Gradle 4.8</a> at 20.07.2019 22:59:41</p>
+<a href="http://www.gradle.org">Gradle 4.8</a> at 10.10.2019 22:09:08</p>
 </div>
 </div>
 </body>

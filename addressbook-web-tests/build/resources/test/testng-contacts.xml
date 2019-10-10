@@ -4,6 +4,14 @@
     <test name="Contacts">
         <classes>
             <class name="ru.stqa.pft.addressbook.tests.ContactCreationTest"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactModificationTest"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactDeletionTest"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactAddressTest"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactCommunicationDataTest"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactEmailsTest"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactInsertionToGroupTest"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactPhonesTest"/>
+            <class name="ru.stqa.pft.addressbook.tests.ContactRemovalFromGroupTest"/>
         </classes>
     </test>
 </suite>
