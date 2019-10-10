@@ -1,7 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ru.stqa.pft.addressbook.tests.GroupModificationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-07-20T19:03:55" hostname="LAPTOP-2G0E3QHA" time="2.331">
+<testsuite name="ru.stqa.pft.addressbook.tests.GroupModificationTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-10-10T20:28:19" hostname="LAPTOP-2G0E3QHA" time="3.583">
   <properties/>
-  <testcase name="testGroupModification" classname="ru.stqa.pft.addressbook.tests.GroupModificationTest" time="2.331"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="testGroupModification" classname="ru.stqa.pft.addressbook.tests.GroupModificationTest" time="3.583"/>
+  <system-out><![CDATA[00:28:19.342 [Test worker] INFO  r.s.pft.addressbook.tests.TestBase - Start test testGroupModification with parameters []
+Hibernate: select groupdata0_.group_id as group_id1_2_, groupdata0_.group_footer as group_fo2_2_, groupdata0_.group_header as group_he3_2_, groupdata0_.group_name as group_na4_2_ from group_list groupdata0_
+GroupData{id=241, name='test 1'}
+GroupData{id=252, name='changedGroup1'}
+GroupData{id=253, name='changedGroup1'}
+GroupData{id=254, name='test 0'}
+GroupData{id=255, name='changedGroup1'}
+GroupData{id=256, name='test 1'}
+GroupData{id=257, name='changedGroup1'}
+GroupData{id=259, name='test 0'}
+GroupData{id=260, name='test 1'}
+GroupData{id=261, name='test 0'}
+GroupData{id=262, name='test 1'}
+GroupData{id=263, name='changedGroup1'}
+GroupData{id=266, name='changedGroup1'}
+GroupData{id=267, name='changedGroup1'}
+GroupData{id=269, name='changedGroup1'}
+GroupData{id=271, name='changedGroup1'}
+GroupData{id=273, name='changedGroup1'}
+GroupData{id=275, name='test 0'}
+GroupData{id=276, name='test 1'}
+Hibernate: select groupdata0_.group_id as group_id1_2_, groupdata0_.group_footer as group_fo2_2_, groupdata0_.group_header as group_he3_2_, groupdata0_.group_name as group_na4_2_ from group_list groupdata0_
+GroupData{id=241, name='test 1'}
+GroupData{id=252, name='changedGroup1'}
+GroupData{id=253, name='changedGroup1'}
+GroupData{id=254, name='test 0'}
+GroupData{id=255, name='changedGroup1'}
+GroupData{id=256, name='test 1'}
+GroupData{id=257, name='changedGroup1'}
+GroupData{id=259, name='test 0'}
+GroupData{id=260, name='test 1'}
+GroupData{id=261, name='test 0'}
+GroupData{id=262, name='test 1'}
+GroupData{id=263, name='changedGroup1'}
+GroupData{id=266, name='changedGroup1'}
+GroupData{id=267, name='changedGroup1'}
+GroupData{id=269, name='changedGroup1'}
+GroupData{id=271, name='changedGroup1'}
+GroupData{id=273, name='changedGroup1'}
+GroupData{id=275, name='test 0'}
+GroupData{id=276, name='test 1'}
+Hibernate: select groupdata0_.group_id as group_id1_2_, groupdata0_.group_footer as group_fo2_2_, groupdata0_.group_header as group_he3_2_, groupdata0_.group_name as group_na4_2_ from group_list groupdata0_
+GroupData{id=241, name='test 1'}
+GroupData{id=252, name='changedGroup1'}
+GroupData{id=253, name='changedGroup1'}
+GroupData{id=254, name='changedGroup1'}
+GroupData{id=255, name='changedGroup1'}
+GroupData{id=256, name='test 1'}
+GroupData{id=257, name='changedGroup1'}
+GroupData{id=259, name='test 0'}
+GroupData{id=260, name='test 1'}
+GroupData{id=261, name='test 0'}
+GroupData{id=262, name='test 1'}
+GroupData{id=263, name='changedGroup1'}
+GroupData{id=266, name='changedGroup1'}
+GroupData{id=267, name='changedGroup1'}
+GroupData{id=269, name='changedGroup1'}
+GroupData{id=271, name='changedGroup1'}
+GroupData{id=273, name='changedGroup1'}
+GroupData{id=275, name='test 0'}
+GroupData{id=276, name='test 1'}
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
