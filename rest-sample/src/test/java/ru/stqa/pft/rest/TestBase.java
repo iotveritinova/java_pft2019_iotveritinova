@@ -19,6 +19,6 @@ public class TestBase {
     JsonElement issues = new JsonParser().parse(json).getAsJsonObject().get("issues");
     JsonElement issue = issues.getAsJsonArray().get(0);
     String issue_state = issue.getAsJsonObject().get("state_name").toString();
-    return issue_state.contains("Open");
+    return !issue_state.contains("Closed");
   }
 }
