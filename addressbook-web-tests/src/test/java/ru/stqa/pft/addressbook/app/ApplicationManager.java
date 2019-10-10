@@ -45,6 +45,7 @@ public class ApplicationManager {
       DesiredCapabilities capabilities = new DesiredCapabilities();
       capabilities.setBrowserName(browser);
       wd = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
+      System.out.println("selenium run on "+properties.getProperty("selenium.server"));
     }
     //wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     wd.get(properties.getProperty("web.baseUrl"));//"http://localhost/addressbook/"
